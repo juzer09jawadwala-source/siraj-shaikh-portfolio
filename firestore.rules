@@ -1,0 +1,67 @@
+rules_version = '2';
+
+// ===============================================================
+// Assumed Data Model
+// ===============================================================
+//
+// Collection: users
+// Document ID: {userId} (matches request.auth.uid)
+// Fields:
+//   - uid: string (required) - Firebase Auth User UID
+//   - displayName: string (optional) - User's display name
+//   - email: string (optional) - User's email
+//   - phoneNumber: string (optional) - User's phone number
+//   - photoURL: string (optional) - User's avatar image URL
+//   - providerId: string (optional) - Auth provider (google.com, password, phone)
+//   - createdAt: timestamp (optional) - Account creation time
+//   - lastLogin: timestamp (required) - Last login time
+//   - updatedAt: timestamp (optional) - Last update time
+//
+// Collection: inquiries
+// Document ID: auto-generated
+// Fields:
+//   - name: string (required, 1-100 chars)
+//   - phoneOrEmail: string (required, 1-100 chars)
+//   - eventType: string (optional)
+//   - eventDate: string (optional)
+//   - message: string (optional, max 1000 chars)
+//   - createdAt: timestamp (required)
+//   - userId: string (optional)
+//
+// ===============================================================
+
+service cloud.firestore {
+  match /databases/{database}/documents {
+
+    // Helper functions
+    function isAuthenticated() {
+      return request.auth != null;
+    }
+
+    function isOwner(userId) {
+      return isAuthenticated() && request.auth.uid == userId;
+    }
+
+    // User profile collection
+    match /users/{userId} {
+      allow read: if isOwner(userId);
+      allow create: if isOwner(userId) && request.resource.data.uid == userId;
+      allow update: if isOwner(userId) && request.resource.data.uid == userId;
+      allow delete: if false; // Disallow deletion from client
+    }
+
+    // Inquiries / Bookings collection
+    match /inquiries/{inquiryId} {
+      allow create: if request.resource.data.name is string 
+                    && request.resource.data.name.size() > 0 
+                    && request.resource.data.name.size() <= 100;
+      allow read: if isAuthenticated() && (request.auth.uid == resource.data.userId);
+      allow update, delete: if false;
+    }
+
+    // Match all other documents - default deny
+    match /{document=**} {
+      allow read, write: if false;
+    }
+  }
+}

@@ -1,0 +1,2104 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Siraj - #1 in All Over Mumbai Commentator and live Emcee. Elevate your event with a super fast electric voice.">
+    <meta name="keywords" content="Siraj, Commentator, Emcee, Sports Commentator, Live Events, Mumbai, All Over Mumbai">
+    <meta name="author" content="Siraj">
+    <meta property="og:title" content="Siraj - #1 in All Over Mumbai Commentator">
+    <meta property="og:description" content="#1 in All Over Mumbai Commentator and live Emcee. Elevate your event with an electric voice.">
+    <meta property="og:type" content="website">
+    <title>Book Siraj | Live Emcee & Commentator</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Clash+Display:wght@400;500;600;700&family=Inter:wght@400;500;600;800&family=JetBrains+Mono:wght@400;700&display=swap" rel="stylesheet">
+    
+    <!-- FontAwesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    
+    <!-- Firebase SDK v10 (Compat) -->
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.13.2/firebase-firestore-compat.js"></script>
+
+    <!-- Core Styles -->
+    <style>
+        :root {
+            --obsidian-black: #050505;
+            --charcoal-black: #0A0A0A;
+            --electric-cyan: #00f0ff;
+            --neon-blue: #0044ff;
+            --text-main: #f5f5f7;
+            --text-muted: #a1a1a6;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: transparent;
+            color: var(--text-main);
+            line-height: 1.6;
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            overflow-x: hidden;
+            background-image: 
+                radial-gradient(circle at 15% 50%, rgba(0, 240, 255, 0.05), transparent 25%),
+                radial-gradient(circle at 85% 30%, rgba(0, 68, 255, 0.08), transparent 25%);
+        }
+
+        /* Nav Header (Minimal) */
+        header {
+            position: relative;
+            z-index: 10000;
+            padding: 30px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            border-bottom: 1px solid rgba(255,255,255,0.05);
+        }
+
+        .logo {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 1.8rem;
+            font-weight: 700;
+            letter-spacing: 2px;
+            color: #fff;
+            text-decoration: none;
+        }
+        .logo span {
+            color: var(--electric-cyan);
+        }
+
+        .nav-back {
+            color: var(--text-muted);
+            text-decoration: none;
+            font-size: 0.95rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            transition: color 0.3s;
+        }
+        .nav-back:hover {
+            color: var(--electric-cyan);
+        }
+
+        /* Booking Container */
+        .booking-wrapper {
+            position: relative;
+            z-index: 10;
+            flex: 1;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 60px 20px;
+        }
+
+        .booking-card {
+            width: 100%;
+            max-width: 650px;
+            background: rgba(10, 10, 10, 0.6);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(0, 240, 255, 0.15);
+            border-radius: 24px;
+            padding: 50px;
+            box-shadow: 0 25px 50px rgba(0,0,0,0.5), inset 0 0 0 1px rgba(255,255,255,0.02);
+            position: relative;
+            overflow: hidden;
+        }
+
+        .booking-card::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; right: 0;
+            height: 4px;
+            background: linear-gradient(90deg, var(--neon-blue), var(--electric-cyan));
+        }
+
+        .b-header {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            margin-bottom: 40px;
+        }
+        .b-header h1 {
+            font-family: 'Clash Display', sans-serif;
+            font-size: 3rem;
+            color: #fff;
+            margin-bottom: 10px;
+            line-height: 1.1;
+        }
+        .b-header h1 span {
+            color: var(--electric-cyan);
+        }
+        .b-header p {
+            color: var(--text-muted);
+            font-size: 1.05rem;
+        }
+
+        /* Form Elements */
+        .form-group {
+            margin-bottom: 24px;
+            display: flex;
+            flex-direction: column;
+            gap: 8px;
+        }
+
+        .form-row {
+            display: flex;
+            gap: 20px;
+            margin-bottom: 24px;
+        }
+        .form-row .form-group {
+            margin-bottom: 0;
+            flex: 1;
+        }
+
+        label {
+            color: var(--electric-cyan);
+            font-size: 0.8rem;
+            font-weight: 600;
+            text-transform: uppercase;
+            letter-spacing: 1.5px;
+            font-family: 'JetBrains Mono', monospace;
+        }
+        label i {
+            margin-right: 6px;
+        }
+
+        input {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            color: #fff;
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            outline: none;
+            transition: all 0.3s ease;
+        }
+        input:focus {
+            background: rgba(0, 240, 255, 0.03);
+            border-color: var(--electric-cyan);
+            box-shadow: 0 0 15px rgba(0, 240, 255, 0.1);
+        }
+        input::placeholder {
+            color: rgba(255,255,255,0.2);
+        }
+        
+        /* Darker icon for calendar/time picker */
+        ::-webkit-calendar-picker-indicator {
+            filter: invert(1);
+            opacity: 0.5;
+            cursor: pointer;
+            transition: opacity 0.3s;
+        }
+        ::-webkit-calendar-picker-indicator:hover {
+            opacity: 1;
+        }
+
+        /* Submit Button */
+        .submit-btn {
+            width: 100%;
+            margin-top: 10px;
+            padding: 20px;
+            background: #25D366;
+            color: #fff;
+            border: none;
+            border-radius: 14px;
+            font-size: 1.2rem;
+            font-weight: 700;
+            font-family: 'Inter', sans-serif;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 25px rgba(37, 211, 102, 0.2);
+        }
+        .submit-btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 15px 35px rgba(37, 211, 102, 0.35);
+            background: #22c55e;
+        }
+        .submit-btn i {
+            font-size: 1.6rem;
+        }
+
+        @media (max-width: 600px) {
+            .booking-card { padding: 30px 20px; border-radius: 20px; }
+            .form-row { flex-direction: column; gap: 24px; }
+            .b-header h1 { font-size: 2.2rem; }
+        }
+            /* Shadcn Calendar Styles */
+        .calendar-card {
+            background: rgba(10, 10, 10, 0.95);
+            border: 1px solid rgba(255,255,255,0.1);
+            border-radius: 12px;
+            padding: 16px;
+            width: 100%;
+            max-width: 320px;
+            box-shadow: 0 10px 40px rgba(0,0,0,0.5);
+            display: none;
+            position: absolute;
+            z-index: 50;
+            margin-top: 8px;
+            backdrop-filter: blur(10px);
+        }
+        
+        .calendar-header {
+            position: relative;
+            z-index: 10;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 16px;
+            color: #fff;
+            font-weight: 500;
+        }
+
+        .calendar-nav-btn {
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            width: 32px;
+            height: 32px;
+            border-radius: 6px;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: background 0.2s;
+        }
+        .calendar-nav-btn:hover { background: rgba(255,255,255,0.1); }
+
+        .calendar-grid {
+            display: grid;
+            grid-template-columns: repeat(7, 1fr);
+            gap: 4px;
+            text-align: center;
+            margin-bottom: 16px;
+        }
+
+        .calendar-day-header {
+            position: relative;
+            z-index: 10;
+            color: var(--text-muted);
+            font-size: 0.8rem;
+            font-weight: 500;
+            padding-bottom: 8px;
+        }
+
+        .calendar-cell {
+            width: 36px;
+            height: 36px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 6px;
+            color: #fff;
+            font-size: 0.9rem;
+            cursor: pointer;
+            transition: all 0.2s;
+            border: 1px solid transparent;
+        }
+        .calendar-cell:hover:not(.empty) { background: rgba(255,255,255,0.1); }
+        .calendar-cell.selected { background: var(--electric-cyan); color: #000; font-weight: 600; }
+        .calendar-cell.today:not(.selected) { color: var(--electric-cyan); font-weight: bold; background: rgba(0,240,255,0.1); }
+        .calendar-cell.empty { cursor: default; }
+
+        .calendar-presets {
+            border-top: 1px solid rgba(255,255,255,0.1);
+            padding-top: 16px;
+            display: flex;
+            flex-wrap: wrap;
+            gap: 8px;
+        }
+
+        .preset-btn {
+            flex: 1 1 calc(50% - 4px);
+            background: transparent;
+            border: 1px solid rgba(255,255,255,0.1);
+            color: #fff;
+            padding: 8px;
+            border-radius: 6px;
+            font-size: 0.85rem;
+            cursor: pointer;
+            transition: all 0.2s;
+        }
+        .preset-btn:hover { background: rgba(255,255,255,0.1); }
+        
+        .date-input-display {
+            width: 100%;
+            padding: 16px 20px;
+            background: rgba(255,255,255,0.03);
+            border: 1px solid rgba(255,255,255,0.08);
+            border-radius: 12px;
+            color: rgba(255,255,255,0.5);
+            font-family: 'Inter', sans-serif;
+            font-size: 1.05rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+        }
+        .date-input-display.has-value { color: #fff; }
+
+        /* User Profile Pill & Dropdown Styling */
+        #user-profile-btn {
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            border-radius: 9999px;
+            padding: 5px 14px 5px 6px;
+            display: inline-flex;
+            align-items: center;
+            gap: 9px;
+            color: #fff;
+            cursor: pointer;
+            transition: all 0.25s cubic-bezier(0.16, 1, 0.3, 1);
+            position: relative;
+        }
+        #user-profile-btn:hover, #user-profile-btn.active {
+            background: rgba(0, 240, 255, 0.2);
+            border-color: var(--electric-cyan);
+            box-shadow: 0 0 16px rgba(0, 240, 255, 0.4);
+        }
+        #user-profile-btn i.fa-chevron-down {
+            transition: transform 0.25s ease;
+        }
+        #user-profile-btn.active i.fa-chevron-down {
+            transform: rotate(180deg);
+        }
+        .user-dropdown-card {
+            display: none;
+            position: absolute;
+            right: 0;
+            top: calc(100% + 12px);
+            width: 290px;
+            background: #061510;
+            border: 1px solid rgba(0, 240, 255, 0.35);
+            border-radius: 18px;
+            padding: 16px;
+            box-shadow: 0 20px 48px rgba(0, 0, 0, 0.85), 0 0 25px rgba(0, 240, 255, 0.18);
+            z-index: 100000 !important;
+            pointer-events: auto !important;
+            backdrop-filter: blur(16px);
+            -webkit-backdrop-filter: blur(16px);
+            animation: dropdownSlideIn 0.22s cubic-bezier(0.16, 1, 0.3, 1);
+            text-align: left;
+        }
+        @keyframes dropdownSlideIn {
+            from { opacity: 0; transform: translateY(-8px) scale(0.96); }
+            to { opacity: 1; transform: translateY(0) scale(1); }
+        }
+        .user-card-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding-bottom: 12px;
+        }
+        .user-card-avatar-wrap {
+            position: relative;
+            flex-shrink: 0;
+        }
+        .user-card-avatar {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 2px solid var(--electric-cyan);
+            box-shadow: 0 0 10px rgba(0, 240, 255, 0.3);
+        }
+        .user-status-dot {
+            position: absolute;
+            bottom: 2px;
+            right: 2px;
+            width: 10px;
+            height: 10px;
+            background: #10b981;
+            border: 2px solid #061510;
+            border-radius: 50%;
+        }
+        .user-card-meta {
+            flex: 1;
+            min-width: 0;
+        }
+        .user-card-name-row {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 6px;
+            margin-bottom: 2px;
+        }
+        .user-card-name {
+            font-size: 0.95rem;
+            font-weight: 700;
+            color: #fff;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .user-provider-tag {
+            font-size: 0.62rem;
+            font-weight: 800;
+            padding: 2px 7px;
+            border-radius: 9999px;
+            background: rgba(0, 240, 255, 0.15);
+            color: var(--electric-cyan);
+            border: 1px solid rgba(0, 240, 255, 0.4);
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+            flex-shrink: 0;
+        }
+        .user-card-email {
+            font-size: 0.76rem;
+            color: #94a3b8;
+            white-space: nowrap;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+        .user-dropdown-divider {
+            height: 1px;
+            background: rgba(255, 255, 255, 0.08);
+            margin: 10px 0;
+        }
+        .user-dropdown-links {
+            display: flex;
+            flex-direction: column;
+            gap: 6px;
+        }
+        .user-dropdown-link {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            padding: 9px 10px;
+            border-radius: 10px;
+            text-decoration: none;
+            color: #e2e8f0;
+            transition: all 0.2s ease;
+            background: transparent;
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            user-select: none;
+        }
+        .user-dropdown-link:hover {
+            background: rgba(255, 255, 255, 0.06);
+            color: #fff;
+            transform: translateX(3px);
+        }
+        .user-link-icon-box {
+            width: 32px;
+            height: 32px;
+            border-radius: 8px;
+            background: rgba(0, 240, 255, 0.1);
+            color: var(--electric-cyan);
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            font-size: 0.88rem;
+            flex-shrink: 0;
+            pointer-events: none;
+        }
+        .user-link-text {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            text-align: left;
+            pointer-events: none;
+        }
+        .user-link-text span {
+            font-size: 0.84rem;
+            font-weight: 600;
+            color: #f1f5f9;
+        }
+        .user-link-text small {
+            font-size: 0.7rem;
+            color: #64748b;
+        }
+        .user-link-arrow {
+            font-size: 0.72rem;
+            color: #64748b;
+            transition: transform 0.2s;
+            pointer-events: none;
+        }
+        .user-dropdown-link:hover .user-link-arrow {
+            color: var(--electric-cyan);
+            transform: translateX(2px);
+        }
+        .user-signout-btn {
+            width: 100%;
+            padding: 10px;
+            border-radius: 10px;
+            background: rgba(239, 68, 68, 0.12);
+            border: 1px solid rgba(239, 68, 68, 0.35);
+            color: #fca5a5;
+            font-size: 0.84rem;
+            font-weight: 600;
+            cursor: pointer !important;
+            pointer-events: auto !important;
+            user-select: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            transition: all 0.2s ease;
+        }
+        /* ===================================================
+           Firebase Authentication Modal (Google, Email, Phone)
+           =================================================== */
+        .auth-modal-overlay {
+            position: fixed;
+            inset: 0;
+            background: rgba(0, 0, 0, 0.85);
+            backdrop-filter: blur(14px);
+            -webkit-backdrop-filter: blur(14px);
+            z-index: 100000;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 20px;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+        }
+        .auth-modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+        .auth-modal-card {
+            background: #061410;
+            border: 1px solid rgba(0, 240, 255, 0.35);
+            border-radius: 24px;
+            padding: 34px 28px 28px;
+            max-width: 440px;
+            width: 100%;
+            position: relative;
+            box-shadow: 0 25px 70px rgba(0, 0, 0, 0.9), 0 0 35px rgba(0, 240, 255, 0.18);
+            transform: scale(0.94) translateY(18px);
+            transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+            color: #fff;
+            max-height: 90vh;
+            overflow-y: auto;
+            text-align: center;
+        }
+        .auth-modal-overlay.active .auth-modal-card {
+            transform: scale(1) translateY(0);
+        }
+        .auth-modal-close {
+            position: absolute;
+            top: 18px;
+            right: 18px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.15);
+            width: 36px;
+            height: 36px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #fff;
+            font-size: 1.4rem;
+            cursor: pointer;
+            transition: all 0.2s ease;
+        }
+        .auth-modal-close:hover {
+            background: rgba(255, 255, 255, 0.2);
+            color: var(--electric-cyan);
+            border-color: var(--electric-cyan);
+            transform: scale(1.05);
+        }
+        .contact-modal-badge {
+            display: inline-flex;
+            align-items: center;
+            gap: 6px;
+            padding: 4px 12px;
+            border-radius: 9999px;
+            background: rgba(0, 240, 255, 0.1);
+            border: 1px solid rgba(0, 240, 255, 0.3);
+            color: var(--electric-cyan);
+            font-size: 0.78rem;
+            font-weight: 700;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .contact-modal-title {
+            font-size: 1.8rem;
+            font-weight: 800;
+            margin-bottom: 6px;
+            color: #fff;
+        }
+        .contact-modal-title span {
+            color: var(--electric-cyan);
+        }
+        .contact-modal-sub {
+            font-size: 0.88rem;
+            color: #94a3b8;
+            margin-bottom: 20px;
+            line-height: 1.5;
+        }
+        .auth-nav-tabs {
+            display: flex;
+            background: rgba(255, 255, 255, 0.05);
+            border: 1px solid rgba(255, 255, 255, 0.08);
+            border-radius: 12px;
+            padding: 4px;
+            margin-bottom: 22px;
+            gap: 4px;
+        }
+        .auth-nav-tab {
+            flex: 1;
+            padding: 9px 6px;
+            background: transparent;
+            border: none;
+            border-radius: 8px;
+            color: #94a3b8;
+            font-size: 0.82rem;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.2s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 6px;
+        }
+        .auth-nav-tab.active {
+            background: rgba(0, 240, 255, 0.15);
+            color: var(--electric-cyan);
+            box-shadow: 0 0 12px rgba(0, 240, 255, 0.2);
+            border: 1px solid rgba(0, 240, 255, 0.35);
+        }
+        .auth-input-group {
+            margin-bottom: 14px;
+            text-align: left;
+        }
+        .auth-label {
+            display: block;
+            font-size: 0.76rem;
+            font-weight: 600;
+            color: #cbd5e1;
+            margin-bottom: 6px;
+            letter-spacing: 0.5px;
+            text-transform: uppercase;
+        }
+        .auth-input-field {
+            width: 100%;
+            padding: 12px 14px;
+            background: rgba(255, 255, 255, 0.04);
+            border: 1px solid rgba(255, 255, 255, 0.12);
+            border-radius: 10px;
+            color: #fff;
+            font-size: 0.92rem;
+            font-family: inherit;
+            outline: none;
+            transition: all 0.25s ease;
+            box-sizing: border-box;
+        }
+        .auth-input-field:focus {
+            border-color: var(--electric-cyan);
+            box-shadow: 0 0 14px rgba(0, 240, 255, 0.25);
+            background: rgba(0, 240, 255, 0.03);
+        }
+        .auth-btn-primary {
+            width: 100%;
+            padding: 13px;
+            border-radius: 12px;
+            background: linear-gradient(135deg, #00f0ff, #00a3ff);
+            border: none;
+            color: #03100a;
+            font-weight: 700;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 8px;
+            box-shadow: 0 4px 20px rgba(0, 240, 255, 0.35);
+            transition: all 0.25s ease;
+            margin-top: 8px;
+        }
+        .auth-btn-primary:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 25px rgba(0, 240, 255, 0.55);
+        }
+        .auth-btn-google {
+            width: 100%;
+            padding: 13px;
+            border-radius: 12px;
+            background: rgba(255, 255, 255, 0.08);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            color: #fff;
+            font-weight: 600;
+            font-size: 0.95rem;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            transition: all 0.25s ease;
+            margin-bottom: 16px;
+        }
+        .auth-btn-google:hover {
+            background: rgba(255, 255, 255, 0.14);
+            border-color: var(--electric-cyan);
+            box-shadow: 0 0 20px rgba(0, 240, 255, 0.25);
+        }
+        .auth-feedback {
+            padding: 10px 14px;
+            border-radius: 8px;
+            font-size: 0.85rem;
+            margin-bottom: 16px;
+            display: none;
+            text-align: left;
+            line-height: 1.4;
+        }
+        .auth-feedback.error {
+            display: block;
+            background: rgba(239, 68, 68, 0.15);
+            border: 1px solid rgba(239, 68, 68, 0.4);
+            color: #fca5a5;
+        }
+        .auth-feedback.success {
+            display: block;
+            background: rgba(34, 197, 94, 0.15);
+            border: 1px solid rgba(34, 197, 94, 0.4);
+            color: #86efac;
+        }
+
+        @media (max-width: 768px) {
+            header { flex-direction: row; justify-content: space-between; gap: 10px; padding: 16px 20px; }
+            header { flex-direction: column; gap: 15px; padding: 20px; }
+            .booking-wrapper { padding: 30px 15px; }
+            .booking-card { padding: 30px 20px; }
+            .form-row { flex-direction: column; gap: 15px; }
+            .b-header h1 { font-size: 2.5rem; }
+            .b-header p { font-size: 0.9rem; }
+            .submit-btn { padding: 15px; font-size: 1.1rem; }
+        }
+    </style>
+<link rel="icon" type="image/x-icon" href="favicon.ico">
+</head>
+<body>
+
+    <header>
+        <div style="display: flex; align-items: center; gap: 20px;">
+            <a href="index.html" class="logo">SIRAJ<span>.</span></a>
+            <a href="index.html" class="nav-back"><i class="fa-solid fa-arrow-left"></i> Back to Home</a>
+        </div>
+
+        <div class="header-right" style="display: flex; align-items: center; gap: 12px;">
+            <!-- Sign In Trigger (Logged Out) -->
+            <button type="button" id="google-login-btn" class="pill-btn icon-left auth-modal-trigger" style="background: rgba(255, 255, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.4); color: #fff; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; padding: 8px 18px; border-radius: 9999px; font-weight: 600; font-size: 0.85rem; text-decoration: none; transition: all 0.25s ease;" aria-label="Sign In">
+                <i class="fa-solid fa-user-lock" style="color: var(--electric-cyan); font-size: 0.85rem;"></i>
+                <span>Sign In</span>
+            </button>
+
+            <!-- Google / Firebase User Profile (Logged In) -->
+            <div id="user-menu-container" style="display: none; position: relative;">
+                <button id="user-profile-btn" aria-haspopup="true" aria-expanded="false" aria-label="User Account Menu">
+                    <img id="user-avatar-img" src="" alt="User" style="width: 28px; height: 28px; border-radius: 50%; object-fit: cover; border: 1px solid var(--electric-cyan);">
+                    <span id="user-display-name" style="font-size: 0.85rem; font-weight: 600; color: #fff;"></span>
+                    <i class="fa-solid fa-chevron-down" style="font-size: 0.65rem; color: var(--electric-cyan); opacity: 0.85;"></i>
+                </button>
+
+                <!-- Interactive Profile Dropdown Menu -->
+                <div id="user-dropdown-card" class="user-dropdown-card">
+                    <div class="user-card-header">
+                        <div class="user-card-avatar-wrap">
+                            <img id="dropdown-avatar-img" src="" alt="Avatar" class="user-card-avatar">
+                            <span class="user-status-dot" title="Active"></span>
+                        </div>
+                        <div class="user-card-meta">
+                            <div class="user-card-name-row">
+                                <div id="dropdown-full-name" class="user-card-name"></div>
+                                <span id="dropdown-provider-badge" class="user-provider-tag">GOOGLE</span>
+                            </div>
+                            <div id="dropdown-email" class="user-card-email"></div>
+                        </div>
+                    </div>
+
+                    <div class="user-dropdown-divider"></div>
+
+                    <div class="user-dropdown-links">
+                        <a href="index.html" class="user-dropdown-link" id="user-action-home">
+                            <div class="user-link-icon-box"><i class="fa-solid fa-house"></i></div>
+                            <div class="user-link-text">
+                                <span>Home & Voice Demos</span>
+                                <small>Listen to audio commentary</small>
+                            </div>
+                            <i class="fa-solid fa-chevron-right user-link-arrow"></i>
+                        </a>
+
+                        <a href="https://wa.me/919867706959" target="_blank" rel="noopener noreferrer" class="user-dropdown-link" id="user-action-whatsapp">
+                            <div class="user-link-icon-box" style="color: #25D366; background: rgba(37,211,102,0.12);"><i class="fa-brands fa-whatsapp"></i></div>
+                            <div class="user-link-text">
+                                <span>Direct WhatsApp</span>
+                                <small>Chat live with Siraj</small>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square user-link-arrow"></i>
+                        </a>
+
+                        <a href="https://www.instagram.com/mainhoonmumbaikar/?__pwa=1#" target="_blank" rel="noopener noreferrer" class="user-dropdown-link" id="user-action-instagram">
+                            <div class="user-link-icon-box" style="color: #E1306C; background: rgba(225,48,108,0.12);"><i class="fa-brands fa-instagram"></i></div>
+                            <div class="user-link-text">
+                                <span>Instagram</span>
+                                <small>@mainhoonmumbaikar</small>
+                            </div>
+                            <i class="fa-solid fa-arrow-up-right-from-square user-link-arrow"></i>
+                        </a>
+                    </div>
+
+                    <div class="user-dropdown-divider"></div>
+
+                    <button type="button" id="firebase-signout-btn" class="user-signout-btn">
+                        <i class="fa-solid fa-arrow-right-from-bracket"></i>
+                        <span>Sign Out</span>
+                    </button>
+                </div>
+            </div>
+        </div>
+    </header>
+
+    <div class="booking-wrapper">
+        <div class="booking-card">
+            <div class="b-header">
+                <h1>Book <span>Siraj</span></h1>
+                <p>Finalize your slot directly via WhatsApp.</p>
+            </div>
+
+            <!-- Priority VIP Booking Banner when signed in -->
+            <div id="user-booking-banner" style="display: none; margin-bottom: 25px; padding: 12px 18px; border-radius: 14px; background: rgba(0, 240, 255, 0.08); border: 1px solid rgba(0, 240, 255, 0.3); font-size: 0.88rem; color: #fff; align-items: center; justify-content: space-between; gap: 10px;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-shield-halved" style="color: var(--electric-cyan); font-size: 1.1rem;"></i>
+                    <span>Booking priority unlocked for <strong id="banner-user-name" style="color: var(--electric-cyan);"></strong></span>
+                </div>
+                <span style="font-size: 0.72rem; padding: 3px 8px; border-radius: 999px; background: rgba(0,240,255,0.2); color: var(--electric-cyan); font-weight: 700;">VIP ACTIVE</span>
+            </div>
+
+            <!-- Guest Sign In Invitation Banner when logged out -->
+            <div id="guest-booking-banner" style="display: flex; margin-bottom: 25px; padding: 12px 18px; border-radius: 14px; background: rgba(255, 255, 255, 0.03); border: 1px dashed rgba(0, 240, 255, 0.35); font-size: 0.86rem; color: #cbd5e1; align-items: center; justify-content: space-between; gap: 12px; transition: all 0.3s ease;">
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <i class="fa-solid fa-user-lock" style="color: var(--electric-cyan); font-size: 1.05rem;"></i>
+                    <span>Want VIP scheduling priority? <a href="#signin" class="auth-modal-trigger" style="color: var(--electric-cyan); text-decoration: underline; font-weight: 700; cursor: pointer;">Sign in here</a> to verify your account.</span>
+                </div>
+                <button type="button" class="auth-modal-trigger" style="background: rgba(0,240,255,0.12); border: 1px solid rgba(0,240,255,0.3); color: var(--electric-cyan); padding: 5px 14px; border-radius: 999px; font-size: 0.75rem; font-weight: 700; cursor: pointer; white-space: nowrap; transition: all 0.2s ease;">Sign In</button>
+            </div>
+            
+            <form id="whatsappBookingForm">
+                <div class="form-row">
+                    <div class="form-group">
+                        <label for="bookDate"><i class="fa-regular fa-calendar"></i> Event Date</label>
+                        <!-- Removed 'required' to make UX smoother. We will validate in JS -->
+                        <input type="hidden" id="bookDate">
+                        <div style="position: relative;">
+                            <div class="date-input-display" id="dateDisplay">
+                                <span>Select a date</span>
+                                <i class="fa-regular fa-calendar" style="color: var(--electric-cyan);"></i>
+                            </div>
+                            
+                            <!-- Shadcn-like Calendar Popup -->
+                            <div class="calendar-card" id="calendarCard">
+                                <div class="calendar-header">
+                                    <button type="button" class="calendar-nav-btn" id="prevMonth"><i class="fa-solid fa-chevron-left"></i></button>
+                                    <span id="currentMonthYear"></span>
+                                    <button type="button" class="calendar-nav-btn" id="nextMonth"><i class="fa-solid fa-chevron-right"></i></button>
+                                </div>
+                                <div class="calendar-grid" id="calendarGrid">
+                                    <!-- Days header and cells generated via JS -->
+                                </div>
+                                <div class="calendar-presets">
+                                    <button type="button" class="preset-btn" data-days="0">Today</button>
+                                    <button type="button" class="preset-btn" data-days="1">Tomorrow</button>
+                                    <button type="button" class="preset-btn" data-days="3">In 3 days</button>
+                                    <button type="button" class="preset-btn" data-days="7">In a week</button>
+                                    <button type="button" class="preset-btn" data-days="14">In 2 weeks</button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="form-group">
+                        <label for="bookTime"><i class="fa-regular fa-clock"></i> Timing</label>
+                        <input type="time" id="bookTime">
+                    </div>
+                </div>
+                
+                <div class="form-group">
+                    <label for="bookEvent"><i class="fa-solid fa-microphone-lines"></i> Event Type / Details</label>
+                    <input type="text" id="bookEvent" placeholder="e.g. IPL Final, Corporate Gala, Sangeet">
+                </div>
+
+                <div class="form-group">
+                    <label for="bookVenue"><i class="fa-solid fa-location-dot"></i> Event Venue</label>
+                    <input type="text" id="bookVenue" placeholder="e.g. Wankhede Stadium, Mumbai">
+                </div>
+
+                <button type="button" id="submitBtn" class="submit-btn">
+                    <i class="fa-brands fa-whatsapp"></i>
+                    Book on WhatsApp
+                </button>
+            </form>
+        </div>
+    </div>
+
+        <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Custom Shadcn Calendar Logic ---
+            const dateDisplay = document.getElementById('dateDisplay');
+            const dateDisplaySpan = dateDisplay.querySelector('span');
+            const dateInput = document.getElementById('bookDate');
+            const calendarCard = document.getElementById('calendarCard');
+            const grid = document.getElementById('calendarGrid');
+            const monthYearText = document.getElementById('currentMonthYear');
+            
+            let selectedDate = null;
+            let viewMonth = new Date().getMonth();
+            let viewYear = new Date().getFullYear();
+            
+            function renderCalendar() {
+                grid.innerHTML = '';
+                const days = ['Su', 'Mo', 'Tu', 'We', 'Th', 'Fr', 'Sa'];
+                days.forEach(d => {
+                    const el = document.createElement('div');
+                    el.className = 'calendar-day-header';
+                    el.textContent = d;
+                    grid.appendChild(el);
+                });
+
+                const firstDay = new Date(viewYear, viewMonth, 1).getDay();
+                const daysInMonth = new Date(viewYear, viewMonth + 1, 0).getDate();
+                const today = new Date();
+                
+                monthYearText.textContent = new Date(viewYear, viewMonth).toLocaleString('default', { month: 'long', year: 'numeric' });
+
+                for (let i = 0; i < firstDay; i++) {
+                    const el = document.createElement('div');
+                    el.className = 'calendar-cell empty';
+                    grid.appendChild(el);
+                }
+
+                for (let i = 1; i <= daysInMonth; i++) {
+                    const el = document.createElement('div');
+                    el.className = 'calendar-cell';
+                    el.textContent = i;
+                    
+                    if (
+                        i === today.getDate() && 
+                        viewMonth === today.getMonth() && 
+                        viewYear === today.getFullYear()
+                    ) {
+                        el.classList.add('today');
+                    }
+                    
+                    if (
+                        selectedDate &&
+                        i === selectedDate.getDate() && 
+                        viewMonth === selectedDate.getMonth() && 
+                        viewYear === selectedDate.getFullYear()
+                    ) {
+                        el.classList.add('selected');
+                    }
+
+                    el.addEventListener('click', (e) => {
+                        e.stopPropagation();
+                        selectedDate = new Date(viewYear, viewMonth, i);
+                        updateDateSelection();
+                        calendarCard.style.display = 'none';
+                    });
+                    
+                    grid.appendChild(el);
+                }
+            }
+            
+            function updateDateSelection() {
+                if (!selectedDate) return;
+                const formatted = selectedDate.toLocaleDateString('en-CA'); // YYYY-MM-DD
+                dateInput.value = formatted;
+                
+                dateDisplaySpan.textContent = selectedDate.toLocaleDateString('en-US', {
+                    month: 'short', day: 'numeric', year: 'numeric'
+                });
+                dateDisplay.classList.add('has-value');
+                renderCalendar(); // re-render to update selected state
+            }
+            
+            // Toggle Calendar
+            dateDisplay.addEventListener('click', (e) => {
+                e.stopPropagation();
+                const isHidden = calendarCard.style.display === 'none' || calendarCard.style.display === '';
+                calendarCard.style.display = isHidden ? 'block' : 'none';
+                if (isHidden) {
+                    if (selectedDate) {
+                        viewMonth = selectedDate.getMonth();
+                        viewYear = selectedDate.getFullYear();
+                    } else {
+                        viewMonth = new Date().getMonth();
+                        viewYear = new Date().getFullYear();
+                    }
+                    renderCalendar();
+                }
+            });
+            
+            // Hide on outside click
+            document.addEventListener('click', (e) => {
+                if (!calendarCard.contains(e.target) && !dateDisplay.contains(e.target)) {
+                    calendarCard.style.display = 'none';
+                }
+            });
+            
+            // Navigation
+            document.getElementById('prevMonth').addEventListener('click', (e) => {
+                e.stopPropagation();
+                viewMonth--;
+                if (viewMonth < 0) { viewMonth = 11; viewYear--; }
+                renderCalendar();
+            });
+            
+            document.getElementById('nextMonth').addEventListener('click', (e) => {
+                e.stopPropagation();
+                viewMonth++;
+                if (viewMonth > 11) { viewMonth = 0; viewYear++; }
+                renderCalendar();
+            });
+            
+            // Presets
+            document.querySelectorAll('.preset-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    e.stopPropagation();
+                    const daysToAdd = parseInt(btn.getAttribute('data-days'));
+                    const targetDate = new Date();
+                    targetDate.setDate(targetDate.getDate() + daysToAdd);
+                    
+                    selectedDate = targetDate;
+                    viewMonth = targetDate.getMonth();
+                    viewYear = targetDate.getFullYear();
+                    updateDateSelection();
+                    calendarCard.style.display = 'none';
+                });
+            });
+
+
+            // Firebase Initialization for Bookings DB & Header Profile
+            const firebaseConfig = {
+                apiKey: "AIzaSyBfof-h9fZQcZl4VaAKQed2SUoDbtCG5IE",
+                authDomain: "commentator-portfolio.firebaseapp.com",
+                projectId: "commentator-portfolio",
+                storageBucket: "commentator-portfolio.firebasestorage.app",
+                messagingSenderId: "204661095748",
+                appId: "1:204661095748:web:684e7784f266527897eb11",
+                measurementId: "G-8Y2KNXB5NQ"
+            };
+            let currentUserProfile = null;
+            if (typeof firebase !== 'undefined') {
+                if (!firebase.apps.length) {
+                    firebase.initializeApp(firebaseConfig);
+                }
+                const auth = firebase.auth();
+                const db = firebase.firestore();
+
+                // UI Elements: Header & Menus
+                const authOpenBtn = document.getElementById("google-login-btn");
+                const userMenuContainer = document.getElementById("user-menu-container");
+                const userProfileBtn = document.getElementById("user-profile-btn");
+                const userDropdownCard = document.getElementById("user-dropdown-card");
+                const userAvatarImg = document.getElementById("user-avatar-img");
+                const dropdownAvatarImg = document.getElementById("dropdown-avatar-img");
+                const userDisplayName = document.getElementById("user-display-name");
+                const dropdownFullName = document.getElementById("dropdown-full-name");
+                const dropdownEmail = document.getElementById("dropdown-email");
+                const dropdownProviderBadge = document.getElementById("dropdown-provider-badge");
+                const firebaseSignoutBtn = document.getElementById("firebase-signout-btn");
+                const userBookingBanner = document.getElementById("user-booking-banner");
+                const guestBookingBanner = document.getElementById("guest-booking-banner");
+                const bannerUserName = document.getElementById("banner-user-name");
+
+                // UI Elements: Auth Modal
+                const authModal = document.getElementById("auth-modal");
+                const closeAuthModalBtn = document.getElementById("close-auth-modal");
+                const authFeedback = document.getElementById("auth-feedback");
+
+                // Tab Buttons & Contents
+                const tabBtnGoogle = document.getElementById("tab-btn-google");
+                const tabBtnEmail = document.getElementById("tab-btn-email");
+                const tabBtnPhone = document.getElementById("tab-btn-phone");
+                const tabContentGoogle = document.getElementById("tab-content-google");
+                const tabContentEmail = document.getElementById("tab-content-email");
+                const tabContentPhone = document.getElementById("tab-content-phone");
+
+                // Google Sign In Button in Modal
+                const modalGoogleBtn = document.getElementById("modal-google-signin-btn");
+
+                // Email Form Elements
+                const emailAuthForm = document.getElementById("email-auth-form");
+                const toggleEmailSignIn = document.getElementById("toggle-email-signin");
+                const toggleEmailSignUp = document.getElementById("toggle-email-signup");
+                const signupNameGroup = document.getElementById("signup-name-group");
+                const authNameInput = document.getElementById("auth-name-input");
+                const authEmailInput = document.getElementById("auth-email-input");
+                const authPasswordInput = document.getElementById("auth-password-input");
+                const emailSubmitBtn = document.getElementById("email-submit-btn");
+                const emailBtnText = document.getElementById("email-btn-text");
+                const forgotPasswordLink = document.getElementById("forgot-password-link");
+                let isSignUpMode = false;
+
+                // Phone Form Elements
+                const phoneStep1 = document.getElementById("phone-step-1");
+                const phoneStep2 = document.getElementById("phone-step-2");
+                const authPhoneCode = document.getElementById("auth-phone-code");
+                const authPhoneInput = document.getElementById("auth-phone-input");
+                const phoneRecaptchaContainer = document.getElementById("phone-recaptcha-container");
+                const phoneSendCodeBtn = document.getElementById("phone-send-code-btn");
+                const authOtpInput = document.getElementById("auth-otp-input");
+                const phoneDisplayTarget = document.getElementById("phone-display-target");
+                const phoneVerifyCodeBtn = document.getElementById("phone-verify-code-btn");
+                const phoneChangeNumberLink = document.getElementById("phone-change-number-link");
+                const phoneResendLink = document.getElementById("phone-resend-link");
+                let phoneConfirmationResult = null;
+                let recaptchaVerifierInstance = null;
+
+                // Feedback helper
+                function showAuthFeedback(msg, type = 'error') {
+                    if (!authFeedback) return;
+                    authFeedback.className = `auth-feedback ${type}`;
+                    authFeedback.innerHTML = `<i class="fa-solid fa-${type === 'error' ? 'circle-exclamation' : 'circle-check'}" style="margin-right: 6px;"></i> ${msg}`;
+                    authFeedback.style.display = 'block';
+                }
+
+                function clearAuthFeedback() {
+                    if (!authFeedback) return;
+                    authFeedback.className = 'auth-feedback';
+                    authFeedback.style.display = 'none';
+                }
+
+                function openAuthModal() {
+                    clearAuthFeedback();
+                    if (authModal) authModal.classList.add("active");
+                }
+
+                function closeAuthModal() {
+                    if (authModal) authModal.classList.remove("active");
+                    clearAuthFeedback();
+                }
+
+                if (authOpenBtn) authOpenBtn.addEventListener("click", openAuthModal);
+                if (closeAuthModalBtn) closeAuthModalBtn.addEventListener("click", closeAuthModal);
+                if (authModal) {
+                    authModal.addEventListener("click", (e) => {
+                        if (e.target === authModal) closeAuthModal();
+                    });
+                }
+
+                // Check URL query parameters and hashes for auto-opening Sign-In modal
+                function checkUrlAuthTrigger() {
+                    const params = new URLSearchParams(window.location.search);
+                    const hash = window.location.hash;
+                    if (params.get('auth') === '1' || params.get('auth') === 'true' || params.get('signin') === '1' || params.get('action') === 'signin' || hash === '#signin' || hash === '#auth' || hash === '#auth-modal') {
+                        if (!auth.currentUser) {
+                            openAuthModal();
+                        }
+                    }
+                }
+                setTimeout(checkUrlAuthTrigger, 150);
+                window.addEventListener('hashchange', checkUrlAuthTrigger);
+
+                // Universal listener for any clickable link or element triggering sign-in
+                document.addEventListener('click', (e) => {
+                    const trigger = e.target.closest('[data-auth-trigger], .auth-modal-trigger, a[href="#signin"], a[href="#auth"], a[href="#auth-modal"]');
+                    if (trigger) {
+                        e.preventDefault();
+                        if (auth.currentUser) {
+                            if (userDropdownCard) {
+                                const isShown = userDropdownCard.style.display === "block";
+                                userDropdownCard.style.display = isShown ? "none" : "block";
+                                if (userProfileBtn) userProfileBtn.classList.toggle("active", !isShown);
+                            }
+                        } else {
+                            openAuthModal();
+                        }
+                    }
+                });
+
+                // Tab Switching Handler
+                function switchTab(tab) {
+                    clearAuthFeedback();
+                    [tabBtnGoogle, tabBtnEmail, tabBtnPhone].forEach(b => b && b.classList.remove("active"));
+                    [tabContentGoogle, tabContentEmail, tabContentPhone].forEach(c => c && (c.style.display = "none"));
+
+                    if (tab === 'google') {
+                        if (tabBtnGoogle) tabBtnGoogle.classList.add("active");
+                        if (tabContentGoogle) tabContentGoogle.style.display = "block";
+                    } else if (tab === 'email') {
+                        if (tabBtnEmail) tabBtnEmail.classList.add("active");
+                        if (tabContentEmail) tabContentEmail.style.display = "block";
+                    } else if (tab === 'phone') {
+                        if (tabBtnPhone) tabBtnPhone.classList.add("active");
+                        if (tabContentPhone) tabContentPhone.style.display = "block";
+                        initRecaptcha();
+                    }
+                }
+
+                if (tabBtnGoogle) tabBtnGoogle.addEventListener("click", () => switchTab('google'));
+                if (tabBtnEmail) tabBtnEmail.addEventListener("click", () => switchTab('email'));
+                if (tabBtnPhone) tabBtnPhone.addEventListener("click", () => switchTab('phone'));
+
+                // Email Form: Mode Toggle (Sign In vs Create Account)
+                function setEmailMode(signUp) {
+                    isSignUpMode = signUp;
+                    clearAuthFeedback();
+                    if (signUp) {
+                        toggleEmailSignIn.style.color = "#94a3b8";
+                        toggleEmailSignIn.style.fontWeight = "500";
+                        toggleEmailSignIn.style.borderBottom = "none";
+                        toggleEmailSignUp.style.color = "var(--electric-cyan)";
+                        toggleEmailSignUp.style.fontWeight = "700";
+                        toggleEmailSignUp.style.borderBottom = "2px solid var(--electric-cyan)";
+                        signupNameGroup.style.display = "block";
+                        emailBtnText.textContent = "Create Account";
+                        forgotPasswordLink.style.display = "none";
+                    } else {
+                        toggleEmailSignIn.style.color = "var(--electric-cyan)";
+                        toggleEmailSignIn.style.fontWeight = "700";
+                        toggleEmailSignIn.style.borderBottom = "2px solid var(--electric-cyan)";
+                        toggleEmailSignUp.style.color = "#94a3b8";
+                        toggleEmailSignUp.style.fontWeight = "500";
+                        toggleEmailSignUp.style.borderBottom = "none";
+                        signupNameGroup.style.display = "none";
+                        emailBtnText.textContent = "Sign In";
+                        forgotPasswordLink.style.display = "inline";
+                    }
+                }
+
+                if (toggleEmailSignIn) toggleEmailSignIn.addEventListener("click", () => setEmailMode(false));
+                if (toggleEmailSignUp) toggleEmailSignUp.addEventListener("click", () => setEmailMode(true));
+
+                // 1. Google Provider Sign-In
+                const googleProvider = new firebase.auth.GoogleAuthProvider();
+                googleProvider.setCustomParameters({ prompt: 'select_account' });
+
+                if (modalGoogleBtn) {
+                    modalGoogleBtn.addEventListener("click", () => {
+                        clearAuthFeedback();
+                        modalGoogleBtn.style.opacity = '0.7';
+                        modalGoogleBtn.style.pointerEvents = 'none';
+
+                        auth.signInWithPopup(googleProvider)
+                            .then((result) => {
+                                modalGoogleBtn.style.opacity = '1';
+                                modalGoogleBtn.style.pointerEvents = 'auto';
+                                closeAuthModal();
+                            })
+                            .catch((error) => {
+                                modalGoogleBtn.style.opacity = '1';
+                                modalGoogleBtn.style.pointerEvents = 'auto';
+                                if (error.code === 'auth/popup-blocked' || error.code === 'auth/cancelled-popup-request') {
+                                    auth.signInWithRedirect(googleProvider);
+                                } else if (error.code !== 'auth/popup-closed-by-user') {
+                                    showAuthFeedback(error.message || "Failed to sign in with Google.", 'error');
+                                }
+                            });
+                    });
+                }
+
+                // 2. Email & Password Authentication
+                if (emailAuthForm) {
+                    emailAuthForm.addEventListener("submit", (e) => {
+                        e.preventDefault();
+                        clearAuthFeedback();
+
+                        const email = authEmailInput.value.trim();
+                        const password = authPasswordInput.value;
+                        const fullName = authNameInput.value.trim();
+
+                        if (!email || !password) {
+                            showAuthFeedback("Please provide both email and password.", 'error');
+                            return;
+                        }
+
+                        emailSubmitBtn.disabled = true;
+                        emailBtnText.textContent = isSignUpMode ? "Creating Account..." : "Signing In...";
+
+                        if (isSignUpMode) {
+                            if (!fullName) {
+                                showAuthFeedback("Please enter your full name.", 'error');
+                                emailSubmitBtn.disabled = false;
+                                emailBtnText.textContent = "Create Account";
+                                return;
+                            }
+
+                            auth.createUserWithEmailAndPassword(email, password)
+                                .then((cred) => {
+                                    return cred.user.updateProfile({ displayName: fullName }).then(() => cred.user);
+                                })
+                                .then(() => {
+                                    emailSubmitBtn.disabled = false;
+                                    emailBtnText.textContent = "Create Account";
+                                    closeAuthModal();
+                                })
+                                .catch((error) => {
+                                    let msg = error.message;
+                                    if (error.code === 'auth/email-already-in-use') {
+                                        msg = "An account with this email already exists. Please Sign In.";
+                                    } else if (error.code === 'auth/weak-password') {
+                                        msg = "Password should be at least 6 characters.";
+                                    }
+                                    showAuthFeedback(msg, 'error');
+                                    emailSubmitBtn.disabled = false;
+                                    emailBtnText.textContent = isSignUpMode ? "Create Account" : "Sign In";
+                                });
+                        } else {
+                            auth.signInWithEmailAndPassword(email, password)
+                                .then(() => {
+                                    emailSubmitBtn.disabled = false;
+                                    emailBtnText.textContent = "Sign In";
+                                    closeAuthModal();
+                                })
+                                .catch((error) => {
+                                    let msg = error.message;
+                                    if (error.code === 'auth/user-not-found' || error.code === 'auth/wrong-password' || error.code === 'auth/invalid-credential') {
+                                        msg = "Invalid email or password. Please verify your credentials.";
+                                    }
+                                    showAuthFeedback(msg, 'error');
+                                    emailSubmitBtn.disabled = false;
+                                    emailBtnText.textContent = isSignUpMode ? "Create Account" : "Sign In";
+                                });
+                        }
+                    });
+                }
+
+                // Password Reset Link
+                if (forgotPasswordLink) {
+                    forgotPasswordLink.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        const email = authEmailInput.value.trim();
+                        if (!email) {
+                            showAuthFeedback("Enter your email address in the field above to reset password.", 'error');
+                            authEmailInput.focus();
+                            return;
+                        }
+                        auth.sendPasswordResetEmail(email)
+                            .then(() => {
+                                showAuthFeedback(`Password reset email sent to ${email}. Check your inbox!`, 'success');
+                            })
+                            .catch((err) => {
+                                showAuthFeedback(err.message, 'error');
+                            });
+                    });
+                }
+
+                // 3. Phone Number Authentication with SMS OTP
+                function initRecaptcha() {
+                    if (!recaptchaVerifierInstance && phoneRecaptchaContainer) {
+                        try {
+                            recaptchaVerifierInstance = new firebase.auth.RecaptchaVerifier('phone-recaptcha-container', {
+                                'size': 'invisible',
+                                'callback': (response) => {
+                                    // reCAPTCHA solved
+                                }
+                            });
+                            recaptchaVerifierInstance.render();
+                        } catch(e) {
+                            console.log("Recaptcha init note:", e);
+                        }
+                    }
+                }
+
+                if (phoneSendCodeBtn) {
+                    phoneSendCodeBtn.addEventListener("click", () => {
+                        clearAuthFeedback();
+                        const countryCode = authPhoneCode.value.trim();
+                        const rawPhone = authPhoneInput.value.trim().replace(/\D/g, '');
+
+                        if (!rawPhone || rawPhone.length < 7) {
+                            showAuthFeedback("Please enter a valid mobile number.", 'error');
+                            return;
+                        }
+
+                        const fullPhoneNumber = `${countryCode}${rawPhone}`;
+                        initRecaptcha();
+
+                        phoneSendCodeBtn.disabled = true;
+                        phoneSendCodeBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Sending SMS...</span>';
+
+                        const appVerifier = recaptchaVerifierInstance;
+                        auth.signInWithPhoneNumber(fullPhoneNumber, appVerifier)
+                            .then((confirmationResult) => {
+                                phoneConfirmationResult = confirmationResult;
+                                phoneDisplayTarget.textContent = fullPhoneNumber;
+                                phoneStep1.style.display = "none";
+                                phoneStep2.style.display = "block";
+                                phoneSendCodeBtn.disabled = false;
+                                phoneSendCodeBtn.innerHTML = '<i class="fa-regular fa-paper-plane"></i> <span>Send SMS Code</span>';
+                                authOtpInput.focus();
+                                showAuthFeedback(`6-digit code dispatched to ${fullPhoneNumber}`, 'success');
+                            })
+                            .catch((error) => {
+                                phoneSendCodeBtn.disabled = false;
+                                phoneSendCodeBtn.innerHTML = '<i class="fa-regular fa-paper-plane"></i> <span>Send SMS Code</span>';
+                                let msg = error.message;
+                                if (error.code === 'auth/invalid-phone-number') {
+                                    msg = "Invalid phone number format. Check country code and digits.";
+                                } else if (error.code === 'auth/quota-exceeded') {
+                                    msg = "SMS quota exceeded. Please try again later or use Google/Email sign in.";
+                                }
+                                showAuthFeedback(msg, 'error');
+                                if (recaptchaVerifierInstance) {
+                                    recaptchaVerifierInstance.clear();
+                                    recaptchaVerifierInstance = null;
+                                }
+                            });
+                    });
+                }
+
+                if (phoneVerifyCodeBtn) {
+                    phoneVerifyCodeBtn.addEventListener("click", () => {
+                        clearAuthFeedback();
+                        const code = authOtpInput.value.trim();
+                        if (!code || code.length < 6) {
+                            showAuthFeedback("Please enter the 6-digit SMS verification code.", 'error');
+                            return;
+                        }
+
+                        if (!phoneConfirmationResult) {
+                            showAuthFeedback("Session expired. Please request a new code.", 'error');
+                            phoneStep2.style.display = "none";
+                            phoneStep1.style.display = "block";
+                            return;
+                        }
+
+                        phoneVerifyCodeBtn.disabled = true;
+                        phoneVerifyCodeBtn.innerHTML = '<i class="fa-solid fa-spinner fa-spin"></i> <span>Verifying...</span>';
+
+                        phoneConfirmationResult.confirm(code)
+                            .then((result) => {
+                                phoneVerifyCodeBtn.disabled = false;
+                                phoneVerifyCodeBtn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Verify & Sign In</span>';
+                                closeAuthModal();
+                            })
+                            .catch((error) => {
+                                phoneVerifyCodeBtn.disabled = false;
+                                phoneVerifyCodeBtn.innerHTML = '<i class="fa-solid fa-check"></i> <span>Verify & Sign In</span>';
+                                showAuthFeedback("Incorrect or expired SMS verification code.", 'error');
+                            });
+                    });
+                }
+
+                if (phoneChangeNumberLink) {
+                    phoneChangeNumberLink.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        phoneStep2.style.display = "none";
+                        phoneStep1.style.display = "block";
+                        clearAuthFeedback();
+                    });
+                }
+
+                if (phoneResendLink) {
+                    phoneResendLink.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        if (phoneSendCodeBtn) phoneSendCodeBtn.click();
+                    });
+                }
+
+                // Dropdown Toggle
+                if (userProfileBtn && userDropdownCard) {
+                    userProfileBtn.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                        const isShown = userDropdownCard.style.display === "block";
+                        if (isShown) {
+                            userDropdownCard.style.display = "none";
+                            userProfileBtn.classList.remove("active");
+                        } else {
+                            userDropdownCard.style.display = "block";
+                            userProfileBtn.classList.add("active");
+                        }
+                    });
+
+                    // Prevent clicks inside dropdown card from closing the card
+                    userDropdownCard.addEventListener("click", (e) => {
+                        e.stopPropagation();
+                    });
+
+                    document.addEventListener("click", (e) => {
+                        if (userDropdownCard && !userDropdownCard.contains(e.target) && e.target !== userProfileBtn && !userProfileBtn.contains(e.target)) {
+                            userDropdownCard.style.display = "none";
+                            userProfileBtn.classList.remove("active");
+                        }
+                    });
+                }
+
+                // Dropdown Action 1: Home & Voice Demos
+                const userActionHome = document.getElementById("user-action-home");
+                if (userActionHome) {
+                    userActionHome.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        if (userDropdownCard) userDropdownCard.style.display = "none";
+                        if (userProfileBtn) userProfileBtn.classList.remove("active");
+                        window.location.href = "index.html";
+                    });
+                }
+
+                // Dropdown Action 2: Direct WhatsApp
+                const userActionWhatsapp = document.getElementById("user-action-whatsapp");
+                if (userActionWhatsapp) {
+                    userActionWhatsapp.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        const currentUserName = (dropdownFullName && dropdownFullName.textContent) ? dropdownFullName.textContent : 'Client';
+                        const text = encodeURIComponent(`Hello Siraj! My name is ${currentUserName}. I am signed in on your website and would like to inquire about event commentary.`);
+                        window.open(`https://wa.me/919867706959?text=${text}`, '_blank');
+                    });
+                }
+
+                // Dropdown Action 3: Instagram
+                const userActionInstagram = document.getElementById("user-action-instagram");
+                if (userActionInstagram) {
+                    userActionInstagram.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        window.open("https://www.instagram.com/mainhoonmumbaikar/?__pwa=1#", "_blank");
+                    });
+                }
+
+                // Dropdown Action 4: Sign Out
+                if (firebaseSignoutBtn) {
+                    firebaseSignoutBtn.addEventListener("click", (e) => {
+                        e.preventDefault();
+                        e.stopPropagation();
+                        auth.signOut().then(() => {
+                            if (userDropdownCard) userDropdownCard.style.display = "none";
+                            if (userProfileBtn) userProfileBtn.classList.remove("active");
+                            showToast("Signed out successfully", "fa-solid fa-arrow-right-from-bracket");
+                        }).catch(err => {
+                            console.error("Signout error:", err);
+                            showToast("Error signing out", "fa-solid fa-triangle-exclamation");
+                        });
+                    });
+                }
+
+                // Auth state observer
+                auth.onAuthStateChanged(user => {
+                    if (user) {
+                        currentUserProfile = user;
+                        if (authOpenBtn) authOpenBtn.style.display = "none";
+                        if (userMenuContainer) userMenuContainer.style.display = "inline-flex";
+
+                        let providerName = 'Email';
+                        if (user.providerData && user.providerData.length > 0) {
+                            const pId = user.providerData[0].providerId;
+                            if (pId.includes('google')) providerName = 'Google';
+                            else if (pId.includes('phone')) providerName = 'Phone';
+                            else if (pId.includes('password')) providerName = 'Email';
+                        } else if (user.phoneNumber) {
+                            providerName = 'Phone';
+                        }
+
+                        const name = user.displayName || (user.email ? user.email.split("@")[0] : (user.phoneNumber || "Member"));
+                        const firstName = name.split(" ")[0];
+                        const photo = user.photoURL || `https://ui-avatars.com/api/?name=${encodeURIComponent(name)}&background=00f0ff&color=000`;
+
+                        if (userAvatarImg) userAvatarImg.src = photo;
+                        if (dropdownAvatarImg) dropdownAvatarImg.src = photo;
+                        if (userDisplayName) userDisplayName.textContent = firstName;
+                        if (dropdownFullName) dropdownFullName.textContent = name;
+                        if (dropdownEmail) dropdownEmail.textContent = user.email || user.phoneNumber || 'Authenticated Member';
+                        if (dropdownProviderBadge) dropdownProviderBadge.textContent = providerName;
+
+                        if (userBookingBanner && bannerUserName) {
+                            bannerUserName.textContent = name;
+                            userBookingBanner.style.display = "flex";
+                        }
+                        if (guestBookingBanner) {
+                            guestBookingBanner.style.display = "none";
+                        }
+
+                        // Auto-sync user to Firestore
+                        try {
+                            db.collection("users").doc(user.uid).set({
+                                uid: user.uid,
+                                name: name,
+                                email: user.email || null,
+                                phoneNumber: user.phoneNumber || null,
+                                photoURL: photo,
+                                provider: providerName,
+                                lastLogin: firebase.firestore.FieldValue.serverTimestamp()
+                            }, { merge: true }).catch(dbErr => {
+                                console.log("Firestore note:", dbErr.message);
+                            });
+                        } catch(e) {}
+                    } else {
+                        currentUserProfile = null;
+                        if (authOpenBtn) authOpenBtn.style.display = "inline-flex";
+                        if (userMenuContainer) userMenuContainer.style.display = "none";
+                        if (userDropdownCard) userDropdownCard.style.display = "none";
+                        if (userBookingBanner) userBookingBanner.style.display = "none";
+                        if (guestBookingBanner) guestBookingBanner.style.display = "flex";
+                    }
+                });
+            }
+
+            // --- Booking Submission Logic ---
+            const submitBtn = document.getElementById('submitBtn');
+            
+            submitBtn.addEventListener('click', (e) => {
+                e.preventDefault();
+                
+                const dateVal = dateInput.value || 'Not specified';
+                const timeVal = document.getElementById('bookTime').value || 'Not specified';
+                const venueVal = document.getElementById('bookVenue').value || 'Not specified';
+                const eventVal = document.getElementById('bookEvent').value || 'Not specified';
+                
+                let dayName = 'Not specified';
+                let formattedDateStr = dateVal;
+                
+                if (dateVal !== 'Not specified') {
+                    const dObj = new Date(dateVal);
+                    const daysArr = ['Sunday', 'Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday'];
+                    dayName = daysArr[dObj.getDay()];
+                    formattedDateStr = dObj.toLocaleDateString('en-IN', {
+                        year: 'numeric', month: 'long', day: 'numeric'
+                    });
+                }
+                
+                let formattedTime = timeVal;
+                if (timeVal !== 'Not specified') {
+                    try {
+                        const [hours, minutes] = timeVal.split(':');
+                        const h = parseInt(hours);
+                        const ampm = h >= 12 ? 'PM' : 'AM';
+                        const h12 = h % 12 || 12;
+                        formattedTime = `${h12}:${minutes} ${ampm}`;
+                    } catch (err) {}
+                }
+                
+                // Sync booking to Cloud Firestore database
+                const clientName = (currentUserProfile && (currentUserProfile.displayName || currentUserProfile.email)) || "Client";
+                const clientContact = (currentUserProfile && (currentUserProfile.email || currentUserProfile.phoneNumber)) || "+91 98677 06959";
+                
+                try {
+                    if (typeof firebase !== 'undefined' && firebase.apps.length) {
+                        const db = firebase.firestore();
+                        db.collection("inquiries").add({
+                            name: clientName,
+                            phoneOrEmail: clientContact,
+                            userId: currentUserProfile ? currentUserProfile.uid : null,
+                            eventType: eventVal,
+                            venue: venueVal,
+                            eventDate: formattedDateStr,
+                            day: dayName,
+                            time: formattedTime,
+                            createdAt: firebase.firestore.FieldValue.serverTimestamp()
+                        }).catch(e => console.log("Booking Firestore save note:", e.message));
+                    }
+                } catch(err) {
+                    console.log("Firebase booking note:", err);
+                }
+
+                const phoneNumber = '919867706959';
+                const nameGreeting = currentUserProfile && currentUserProfile.displayName ? ` My name is ${currentUserProfile.displayName}.` : '';
+                
+                const message = `Hello Siraj!${nameGreeting} I would like to book a slot for an upcoming event.\n\n*Event Details:*\n- *Type:* ${eventVal}\n- *Venue:* ${venueVal}\n\n*Schedule:*\n- *Day:* ${dayName}\n- *Date:* ${formattedDateStr}\n- *Time:* ${formattedTime}\n\nPlease let me know your availability!`;
+                
+                const whatsappUrl = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(message)}`;
+                
+                window.open(whatsappUrl, '_blank');
+            });
+        });
+    </script>
+    <canvas id="kineticCanvas" style="position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; z-index: 0; pointer-events: none;"></canvas>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- Kinetic Grid Background Logic ---
+            const canvas = document.getElementById('kineticCanvas');
+            if (canvas) {
+                const ctx = canvas.getContext('2d');
+                let W = window.innerWidth;
+                let H = window.innerHeight;
+                canvas.width = W;
+                canvas.height = H;
+                
+                const mouse = { x: -9999, y: -9999 };
+                const targetMouse = { x: -9999, y: -9999 };
+                const ripples = [];
+                let rafId = 0;
+                
+                const CELL_SIZE = 55;
+                const INFLUENCE_RADIUS = 260;
+                const MAX_WARP = 24;
+                const DOT_SPACING = 28;
+                const LERP_SPEED = 0.08;
+                
+                const LINE_BASE = { r: 255, g: 255, b: 255, a: 0.13 };
+                const NODE_BASE_RADIUS = 1.8;
+                const NODE_ACTIVE_RADIUS = 3.2;
+                
+                const theme = {
+                    bg: "#050505", // Matching obsidian black
+                    lineActive: { r: 74, g: 158, b: 255, a: 0.9 },
+                    nodeActive: { r: 74, g: 158, b: 255, a: 1.0 },
+                    glow: "74,158,255",
+                    ripple: "100,180,255",
+                };
+                
+                function lerpN(a, b, t) {
+                    return a + (b - a) * t;
+                }
+                
+                function lerpColor(base, active, t) {
+                    const r = Math.round(lerpN(base.r, active.r, t));
+                    const g = Math.round(lerpN(base.g, active.g, t));
+                    const b = Math.round(lerpN(base.b, active.b, t));
+                    const a = lerpN(base.a, active.a, t);
+                    return `rgba(${r},${g},${b},${a.toFixed(3)})`;
+                }
+                
+                function getWarpedPoint(gx, gy, col, row, cols, rows) {
+                    const edgeMargin = 1.5;
+                    const colPin = Math.min(col / edgeMargin, (cols - 1 - col) / edgeMargin, 1);
+                    const rowPin = Math.min(row / edgeMargin, (rows - 1 - row) / edgeMargin, 1);
+                    const pinFactor = colPin * colPin * rowPin * rowPin;
+                    
+                    const dx = gx - mouse.x;
+                    const dy = gy - mouse.y;
+                    const dist = Math.sqrt(dx * dx + dy * dy);
+                    
+                    const proximity = Math.max(0, 1 - dist / INFLUENCE_RADIUS) * pinFactor;
+                    
+                    let rx = 0, ry = 0;
+                    for (const r of ripples) {
+                        const rdx = gx - r.x;
+                        const rdy = gy - r.y;
+                        const rdist = Math.sqrt(rdx * rdx + rdy * rdy);
+                        const waveWidth = 55;
+                        const diff = rdist - r.radius;
+                        if (Math.abs(diff) < waveWidth) {
+                            const strength = (1 - Math.abs(diff) / waveWidth) * r.opacity * 18 * pinFactor;
+                            const angle = Math.atan2(rdy, rdx);
+                            const sign = diff < 0 ? -1 : 1;
+                            rx += Math.cos(angle) * strength * sign * -1;
+                            ry += Math.sin(angle) * strength * sign * -1;
+                        }
+                    }
+                    
+                    if (dist < INFLUENCE_RADIUS && dist > 0 && pinFactor > 0) {
+                        const t = dist / INFLUENCE_RADIUS;
+                        const eased = t < 0.01 ? 0 : (1 - t) * (1 - t) * Math.min(1, dist / 60);
+                        const warpAmt = eased * MAX_WARP * pinFactor;
+                        const angle = Math.atan2(dy, dx);
+                        return {
+                            pt: {
+                                x: gx - Math.cos(angle) * warpAmt + rx,
+                                y: gy - Math.sin(angle) * warpAmt + ry,
+                            },
+                            proximity
+                        };
+                    }
+                    
+                    return { pt: { x: gx + rx, y: gy + ry }, proximity };
+                }
+                
+                function draw(now) {
+                    ctx.clearRect(0, 0, W, H);
+                    
+                    ctx.fillStyle = "rgba(255,255,255,0.05)";
+                    for (let x = DOT_SPACING / 2; x < W; x += DOT_SPACING) {
+                        for (let y = DOT_SPACING / 2; y < H; y += DOT_SPACING) {
+                            ctx.beginPath();
+                            ctx.arc(x, y, 0.7, 0, Math.PI * 2);
+                            ctx.fill();
+                        }
+                    }
+                    
+                    for (let i = ripples.length - 1; i >= 0; i--) {
+                        const r = ripples[i];
+                        const age = (now - r.born) / 1000;
+                        r.radius = Math.max(0, age * 400);
+                        r.opacity = Math.max(0, 1 - age * 1.2);
+                        if (r.opacity <= 0) ripples.splice(i, 1);
+                    }
+                    
+                    const cols = Math.max(2, Math.ceil(W / CELL_SIZE)) + 1;
+                    const rows = Math.max(2, Math.ceil(H / CELL_SIZE)) + 1;
+                    const cellW = W / (cols - 1);
+                    const cellH = H / (rows - 1);
+                    
+                    const pts = [];
+                    const prox = [];
+                    
+                    for (let row = 0; row < rows; row++) {
+                        pts[row] = [];
+                        prox[row] = [];
+                        for (let col = 0; col < cols; col++) {
+                            const { pt, proximity } = getWarpedPoint(col * cellW, row * cellH, col, row, cols, rows);
+                            pts[row][col] = pt;
+                            prox[row][col] = proximity;
+                        }
+                    }
+                    
+                    const drawSeg = (p1, p2, pr1, pr2) => {
+                        const avg = (pr1 + pr2) / 2;
+                        const t = avg * avg * (3 - 2 * avg);
+                        ctx.beginPath();
+                        ctx.moveTo(p1.x, p1.y);
+                        ctx.lineTo(p2.x, p2.y);
+                        ctx.strokeStyle = lerpColor(LINE_BASE, theme.lineActive, t);
+                        ctx.lineWidth = lerpN(0.8, 1.5, t);
+                        ctx.stroke();
+                    };
+                    
+                    ctx.lineCap = "butt";
+                    
+                    for (let row = 0; row < rows; row++) {
+                        for (let col = 0; col < cols - 1; col++) {
+                            drawSeg(pts[row][col], pts[row][col + 1], prox[row][col], prox[row][col + 1]);
+                        }
+                    }
+                    
+                    for (let col = 0; col < cols; col++) {
+                        for (let row = 0; row < rows - 1; row++) {
+                            drawSeg(pts[row][col], pts[row + 1][col], prox[row][col], prox[row + 1][col]);
+                        }
+                    }
+                    
+                    for (let row = 0; row < rows; row++) {
+                        for (let col = 0; col < cols; col++) {
+                            const p = pts[row][col];
+                            const pr = prox[row][col];
+                            const t = pr * pr * (3 - 2 * pr);
+                            const r = lerpN(NODE_BASE_RADIUS, NODE_ACTIVE_RADIUS, t);
+                            
+                            if (t > 0.3) {
+                                const glowR = r + lerpN(0, 6, (t - 0.3) / 0.7);
+                                const grd = ctx.createRadialGradient(p.x, p.y, r * 0.5, p.x, p.y, glowR);
+                                grd.addColorStop(0, `rgba(${theme.glow},${(t * 0.3).toFixed(3)})`);
+                                grd.addColorStop(1, `rgba(${theme.glow},0)`);
+                                ctx.beginPath();
+                                ctx.arc(p.x, p.y, glowR, 0, Math.PI * 2);
+                                ctx.fillStyle = grd;
+                                ctx.fill();
+                            }
+                            
+                            ctx.beginPath();
+                            ctx.arc(p.x, p.y, r, 0, Math.PI * 2);
+                            ctx.fillStyle = lerpColor({ r: 255, g: 255, b: 255, a: 0.2 }, theme.nodeActive, t);
+                            ctx.fill();
+                        }
+                    }
+                    
+                    for (const r of ripples) {
+                        const safeRadius = Math.max(0, r.radius);
+                        ctx.beginPath();
+                        ctx.arc(r.x, r.y, safeRadius, 0, Math.PI * 2);
+                        ctx.strokeStyle = `rgba(${theme.ripple},${(r.opacity * 0.28).toFixed(3)})`;
+                        ctx.lineWidth = 1.5;
+                        ctx.stroke();
+                    }
+                }
+                
+                function animate(now) {
+                    mouse.x = lerpN(mouse.x, targetMouse.x, LERP_SPEED);
+                    mouse.y = lerpN(mouse.y, targetMouse.y, LERP_SPEED);
+                    draw(now);
+                    rafId = requestAnimationFrame(animate);
+                }
+                
+                window.addEventListener('resize', () => {
+                    W = window.innerWidth;
+                    H = window.innerHeight;
+                    canvas.width = W;
+                    canvas.height = H;
+                });
+                
+                window.addEventListener('mousemove', (e) => {
+                    targetMouse.x = e.clientX;
+                    targetMouse.y = e.clientY;
+                });
+                
+                window.addEventListener('click', (e) => {
+                    ripples.push({
+                        x: e.clientX,
+                        y: e.clientY,
+                        radius: 0,
+                        opacity: 1,
+                        born: performance.now()
+                    });
+                });
+                
+                rafId = requestAnimationFrame(animate);
+            }
+
+            // Magnetic Button Effect
+            if (!window.matchMedia('(pointer: coarse)').matches) {
+                document.querySelectorAll('.submit-btn, .back-btn, button').forEach(btn => {
+                    let isHovered = false;
+                    btn.addEventListener('mouseenter', () => {
+                        isHovered = true;
+                        btn.style.transition = 'transform 0.12s cubic-bezier(0.16, 1, 0.3, 1), box-shadow 0.3s ease';
+                    });
+                    btn.addEventListener('mousemove', (e) => {
+                        if (!isHovered) return;
+                        const rect = btn.getBoundingClientRect();
+                        const dx = (e.clientX - (rect.left + rect.width / 2)) * 0.4;
+                        const dy = (e.clientY - (rect.top + rect.height / 2)) * 0.4;
+                        btn.style.transform = `translate3d(${dx}px, ${dy}px, 0)`;
+                    });
+                    btn.addEventListener('mouseleave', () => {
+                        isHovered = false;
+                        btn.style.transition = 'transform 0.7s cubic-bezier(0.34, 1.56, 0.64, 1), box-shadow 0.4s ease';
+                        btn.style.transform = 'translate3d(0, 0, 0)';
+                    });
+                });
+            }
+        });
+    </script>
+
+    <!-- Firebase Multi-Provider Authentication Modal (Google, Email/Password, Phone SMS) -->
+    <div id="auth-modal" class="auth-modal-overlay">
+        <div class="auth-modal-card">
+            <button class="auth-modal-close" id="close-auth-modal" aria-label="Close modal">&times;</button>
+            <div class="contact-modal-badge" style="margin-bottom: 12px;">
+                <i class="fa-solid fa-shield-halved"></i> Member Portal
+            </div>
+            <h3 class="contact-modal-title" style="font-size: 1.8rem; margin-bottom: 6px;">Sign In to <span>Siraj</span></h3>
+            <p class="contact-modal-sub" style="font-size: 0.88rem; margin-bottom: 20px;">
+                Connect to book tournament commentary with VIP Priority, auto-fill your requests, and access exclusive perks.
+            </p>
+
+            <div id="auth-feedback" class="auth-feedback"></div>
+
+            <!-- Tab Switcher -->
+            <div class="auth-nav-tabs">
+                <button type="button" class="auth-nav-tab active" id="tab-btn-google">
+                    <svg width="15" height="15" viewBox="0 0 24 24" style="flex-shrink:0;">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                    </svg>
+                    Google
+                </button>
+                <button type="button" class="auth-nav-tab" id="tab-btn-email">
+                    <i class="fa-regular fa-envelope"></i> Email
+                </button>
+                <button type="button" class="auth-nav-tab" id="tab-btn-phone">
+                    <i class="fa-solid fa-mobile-screen"></i> Phone SMS
+                </button>
+            </div>
+
+            <!-- Tab 1: Google Quick Sign-In -->
+            <div id="tab-content-google" class="auth-tab-content">
+                <button type="button" id="modal-google-signin-btn" class="auth-btn-google">
+                    <svg width="20" height="20" viewBox="0 0 24 24">
+                        <path fill="#4285F4" d="M22.56 12.25c0-.78-.07-1.53-.2-2.25H12v4.26h5.92c-.26 1.37-1.04 2.53-2.21 3.31v2.77h3.57c2.08-1.92 3.28-4.74 3.28-8.09z"/>
+                        <path fill="#34A853" d="M12 23c2.97 0 5.46-.98 7.28-2.66l-3.57-2.77c-.98.66-2.23 1.06-3.71 1.06-2.86 0-5.29-1.93-6.16-4.53H2.18v2.84C3.99 20.53 7.7 23 12 23z"/>
+                        <path fill="#FBBC05" d="M5.84 14.09c-.22-.66-.35-1.36-.35-2.09s.13-1.43.35-2.09V7.06H2.18C1.43 8.55 1 10.22 1 12s.43 3.45 1.18 4.94l2.85-2.22.81-.63z"/>
+                        <path fill="#EA4335" d="M12 5.38c1.62 0 3.06.56 4.21 1.64l3.15-3.15C17.45 2.09 14.97 1 12 1 7.7 1 3.99 3.47 2.18 7.06l3.66 2.84c.87-2.6 3.3-4.52 6.16-4.52z"/>
+                    </svg>
+                    <span>Continue with Google</span>
+                </button>
+                <div style="font-size: 0.8rem; color: #94a3b8; line-height: 1.4;">
+                    Instant 1-click verification with your Google account. Fast and secure.
+                </div>
+            </div>
+
+            <!-- Tab 2: Email & Password -->
+            <div id="tab-content-email" class="auth-tab-content" style="display: none;">
+                <!-- Sub-toggle: Sign In vs Sign Up -->
+                <div style="display: flex; justify-content: center; gap: 16px; margin-bottom: 16px; font-size: 0.85rem;">
+                    <button type="button" id="toggle-email-signin" style="background: none; border: none; color: var(--electric-cyan); font-weight: 700; cursor: pointer; border-bottom: 2px solid var(--electric-cyan); padding-bottom: 2px;">Sign In</button>
+                    <button type="button" id="toggle-email-signup" style="background: none; border: none; color: #94a3b8; font-weight: 500; cursor: pointer; padding-bottom: 2px;">Create Account</button>
+                </div>
+
+                <!-- Email Form -->
+                <form id="email-auth-form" onsubmit="return false;">
+                    <div id="signup-name-group" class="auth-input-group" style="display: none;">
+                        <label class="auth-label" for="auth-name-input">Full Name</label>
+                        <input type="text" id="auth-name-input" class="auth-input-field" placeholder="Enter your full name">
+                    </div>
+                    <div class="auth-input-group">
+                        <label class="auth-label" for="auth-email-input">Email Address</label>
+                        <input type="email" id="auth-email-input" class="auth-input-field" placeholder="name@example.com" required>
+                    </div>
+                    <div class="auth-input-group">
+                        <div style="display: flex; justify-content: space-between; align-items: center; margin-bottom: 6px;">
+                            <label class="auth-label" for="auth-password-input" style="margin-bottom: 0;">Password</label>
+                            <a href="#" id="forgot-password-link" style="font-size: 0.76rem; color: var(--electric-cyan); text-decoration: none;">Forgot?</a>
+                        </div>
+                        <input type="password" id="auth-password-input" class="auth-input-field" placeholder="••••••••" required>
+                    </div>
+
+                    <button type="submit" id="email-submit-btn" class="auth-btn-primary">
+                        <span id="email-btn-text">Sign In</span>
+                    </button>
+                </form>
+            </div>
+
+            <!-- Tab 3: Phone Number SMS OTP -->
+            <div id="tab-content-phone" class="auth-tab-content" style="display: none;">
+                <!-- Step 1: Input Phone Number -->
+                <div id="phone-step-1">
+                    <div class="auth-input-group">
+                        <label class="auth-label" for="auth-phone-input">Mobile Number (with Country Code)</label>
+                        <div style="display: flex; gap: 8px;">
+                            <input type="text" id="auth-phone-code" class="auth-input-field" value="+91" style="width: 72px; text-align: center; flex-shrink: 0;">
+                            <input type="tel" id="auth-phone-input" class="auth-input-field" placeholder="9876543210" style="flex: 1;">
+                        </div>
+                        <div style="font-size: 0.74rem; color: #94a3b8; margin-top: 5px;">
+                            We will send a 6-digit SMS verification code to verify your phone number.
+                        </div>
+                    </div>
+
+                    <div id="phone-recaptcha-container" style="margin: 10px 0; display: flex; justify-content: center;"></div>
+
+                    <button type="button" id="phone-send-code-btn" class="auth-btn-primary">
+                        <i class="fa-regular fa-paper-plane"></i>
+                        <span>Send SMS Code</span>
+                    </button>
+                </div>
+
+                <!-- Step 2: Input Verification Code -->
+                <div id="phone-step-2" style="display: none;">
+                    <div style="font-size: 0.85rem; color: #cbd5e1; margin-bottom: 12px;">
+                        Enter the 6-digit code sent to <strong id="phone-display-target" style="color: var(--electric-cyan);"></strong>
+                    </div>
+
+                    <div class="auth-input-group">
+                        <input type="text" id="auth-otp-input" class="auth-input-field" placeholder="123456" maxlength="6" style="letter-spacing: 6px; font-size: 1.3rem; text-align: center; font-weight: 700;">
+                    </div>
+
+                    <button type="button" id="phone-verify-code-btn" class="auth-btn-primary">
+                        <i class="fa-solid fa-check"></i>
+                        <span>Verify & Sign In</span>
+                    </button>
+
+                    <div style="margin-top: 14px; display: flex; justify-content: space-between; font-size: 0.8rem;">
+                        <a href="#" id="phone-change-number-link" style="color: #94a3b8; text-decoration: none;">Change Number</a>
+                        <a href="#" id="phone-resend-link" style="color: var(--electric-cyan); text-decoration: none;">Resend Code</a>
+                    </div>
+                </div>
+            </div>
+
+            <div style="margin-top: 20px; padding-top: 14px; border-top: 1px solid rgba(255, 255, 255, 0.08); font-size: 0.75rem; color: #64748b;">
+                By continuing, you agree to our Terms and secure authentication standards.
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+
+
+
+
+
+
+
+
