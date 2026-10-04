@@ -4201,7 +4201,7 @@
 
         /* Layered Card Drop Shadow, Top Highlight, and Rounded Shoulders on Incoming Sections */
         .stack-section:not(:first-child) {
-            box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.95), 0 -1px 0 rgba(0, 240, 255, 0.15);
+            box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.8), 0 -1px 0 rgba(0, 240, 255, 0.15);
             border-top-left-radius: 20px;
             border-top-right-radius: 20px;
         }
@@ -7349,46 +7349,47 @@
 
                 function updateDepthEffect() {
                     const viewportHeight = window.innerHeight;
+                    const progresses = new Array(stackSections.length).fill(0);
 
+                    // READ PHASE: get all geometry without writing any styles (prevents layout thrashing)
+                    for (let i = 0; i < stackSections.length - 1; i++) {
+                        const nextSec = stackSections[i + 1];
+                        const nextRect = nextSec.getBoundingClientRect();
+                        
+                        if (nextRect.top <= viewportHeight) {
+                            progresses[i] = Math.max(0, Math.min(1, (viewportHeight - nextRect.top) / viewportHeight));
+                        }
+                    }
+
+                    // WRITE PHASE: apply all styles together
                     for (let i = 0; i < stackSections.length; i++) {
                         const currentSec = stackSections[i];
-                        const nextSec = stackSections[i + 1];
-
-                        if (!nextSec) {
-                            // Last section has no depth effect
-                            currentSec.style.transform = `scale(1) translate3d(0, 0, 0)`;
-                            currentSec.style.filter = `brightness(1)`;
-                            continue;
-                        }
-
-                        const nextRect = nextSec.getBoundingClientRect();
-
-                        // Progress of nextSec sliding up and covering currentSec:
-                        // 0 when nextSec top is at viewportHeight (bottom of screen)
-                        // 1 when nextSec top reaches 0 (fully covers currentSec)
-                        let progress = 0;
-                        if (nextRect.top <= viewportHeight) {
-                            progress = Math.max(0, Math.min(1, (viewportHeight - nextRect.top) / viewportHeight));
-                        }
-
+                        const progress = progresses[i];
+                        
                         if (progress > 0) {
                             // Very subtle cinematic depth effect
                             const scale = 1 - (0.025 * progress); // Max scale down to 0.975
                             const brightness = 1 - (0.06 * progress); // Max dim to 0.94
                             
-                            currentSec.style.transform = `scale(${scale}) translate3d(0, 0, 0)`;
+                            currentSec.style.transform = `scale(${scale}) translateZ(0)`;
                             currentSec.style.filter = `brightness(${brightness})`;
                         } else {
-                            currentSec.style.transform = `scale(1) translate3d(0, 0, 0)`;
+                            currentSec.style.transform = `scale(1) translateZ(0)`;
                             currentSec.style.filter = `brightness(1)`;
                         }
                     }
                     ticking = false;
                 }
 
+                window.updateDepthEffect = updateDepthEffect;
+                
+                // Fallback native scroll listener (in case Lenis isn't handling it)
                 window.addEventListener('scroll', () => {
                     if (!ticking) {
-                        window.requestAnimationFrame(updateDepthEffect);
+                        window.requestAnimationFrame(() => {
+                            updateDepthEffect();
+                            ticking = false;
+                        });
                         ticking = true;
                     }
                 }, { passive: true });
@@ -7413,9 +7414,16 @@
             gestureDirection: 'vertical',
             smooth: true,
             mouseMultiplier: 1,
-            smoothTouch: false,
+            smoothTouch: true, // Enabled for ultra smooth mobile scroll
             touchMultiplier: 2,
             infinite: false,
+        });
+
+        // Sync the depth effect perfectly with the Lenis virtual scroll
+        lenis.on('scroll', (e) => {
+            if (window.updateDepthEffect) {
+                window.updateDepthEffect();
+            }
         });
 
         function raf(time) {
