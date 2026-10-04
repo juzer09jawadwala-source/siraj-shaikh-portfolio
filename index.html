@@ -32,8 +32,8 @@
         }
         /* Ensure main layout doesn't overflow horizontally */
         body {
+            background-color: #05100c;
             max-width: 100%;
-            overflow-x: clip;
         }
         .main-wrapper {
             overflow-x: clip;
@@ -56,9 +56,7 @@
         }
 
         body, html {
-            height: 100%;
             background-color: #05100c; /* Deep emerald base fallback */
-            
         }
 
         /* 
@@ -4177,46 +4175,38 @@
         }
 
         /* ==========================================================================
-           Stacked Section Scroll Animation (Reference: animate.mp4)
-           Apple / Editorial Layered Card-Over-Card Scroll Scrubbing
+           Stacked Section Scroll Animation (Apple / Editorial Layered Cards)
            ========================================================================== */
         .stack-section {
             position: -webkit-sticky;
             position: sticky;
             top: 0;
             width: 100%;
+            min-height: 100vh;
+            min-height: 100dvh;
             box-sizing: border-box;
-            will-change: transform;
-            transform: translate3d(0, 0, 0);
-            -webkit-transform: translate3d(0, 0, 0);
-            backface-visibility: hidden;
-            -webkit-backface-visibility: hidden;
             background-color: #05100c;
         }
 
-        /* Layered Card Drop Shadow & Highlight Line on Incoming Sections */
+        /* Layered Card Drop Shadow, Top Highlight, and Rounded Shoulders on Incoming Sections */
         .stack-section:not(:first-child) {
-            box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.95), 0 -1px 0 rgba(0, 240, 255, 0.12);
+            box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.95), 0 -1px 0 rgba(0, 240, 255, 0.15);
+            border-top-left-radius: 20px;
+            border-top-right-radius: 20px;
         }
 
-        /* Ensure shorter sections maintain comfortable viewport coverage while stacking */
+        /* Ensure shorter standalone visual sections center content nicely when filling the 100vh card */
+        .particles-section.stack-section,
         .squiggly-section.stack-section,
-        .stats-section.stack-section {
-            min-height: 70vh;
+        .stats-section.stack-section,
+        .flip-board-section.stack-section,
+        .apple-hello-section.stack-section {
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        /* Accessibility: Disable stacking transition for users with reduced motion preference */
-        @media (prefers-reduced-motion: reduce) {
-            .stack-section {
-                position: static !important;
-                top: auto !important;
-                transform: none !important;
-                box-shadow: none !important;
-            }
-        }
+        /* Stacking transition active for all users testing this portfolio feature */
     </style>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
@@ -7297,28 +7287,29 @@
 
             // --- Section-to-Section Stacked Scroll Controller (animate.mp4 motion reference) ---
             function initSectionStacking() {
-                if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
-                    return;
-                }
-
                 const stackSections = Array.from(document.querySelectorAll('.stack-section'));
                 if (!stackSections.length) return;
 
                 // Assign progressive stacking z-indexes so incoming cards layer naturally on top
                 stackSections.forEach((sec, idx) => {
                     sec.style.zIndex = (idx + 1) * 10;
+                    // Prepare transform origin so it shrinks towards the top (or center)
+                    sec.style.transformOrigin = 'center top';
                 });
+
+                const sectionOffsets = [];
 
                 function calculateOffsets() {
                     const viewportHeight = window.innerHeight;
-                    stackSections.forEach((sec) => {
+                    stackSections.forEach((sec, i) => {
                         const h = sec.offsetHeight;
+                        let targetTop = 0;
                         if (h > viewportHeight) {
                             // Tall sections scroll through their full content, then pin cleanly at the bottom
-                            sec.style.top = `${viewportHeight - h}px`;
-                        } else {
-                            sec.style.top = '0px';
+                            targetTop = viewportHeight - h;
                         }
+                        sec.style.top = `${targetTop}px`;
+                        sectionOffsets[i] = { h, targetTop };
                     });
                 }
 
@@ -7341,6 +7332,58 @@
 
                 // Initial safeguard after images load
                 window.addEventListener('load', calculateOffsets, { passive: true });
+
+                // --- ADVANCED DEPTH EFFECT (Premium Cinematic Scroll overlay) ---
+                let ticking = false;
+
+                function updateDepthEffect() {
+                    const viewportHeight = window.innerHeight;
+
+                    for (let i = 0; i < stackSections.length; i++) {
+                        const currentSec = stackSections[i];
+                        const nextSec = stackSections[i + 1];
+
+                        if (!nextSec) {
+                            // Last section has no depth effect
+                            currentSec.style.transform = `scale(1) translate3d(0, 0, 0)`;
+                            currentSec.style.filter = `brightness(1)`;
+                            continue;
+                        }
+
+                        const nextRect = nextSec.getBoundingClientRect();
+
+                        // Progress of nextSec sliding up and covering currentSec:
+                        // 0 when nextSec top is at viewportHeight (bottom of screen)
+                        // 1 when nextSec top reaches 0 (fully covers currentSec)
+                        let progress = 0;
+                        if (nextRect.top <= viewportHeight) {
+                            progress = Math.max(0, Math.min(1, (viewportHeight - nextRect.top) / viewportHeight));
+                        }
+
+                        if (progress > 0) {
+                            // Very subtle cinematic depth effect
+                            const scale = 1 - (0.025 * progress); // Max scale down to 0.975
+                            const brightness = 1 - (0.06 * progress); // Max dim to 0.94
+                            
+                            currentSec.style.transform = `scale(${scale}) translate3d(0, 0, 0)`;
+                            currentSec.style.filter = `brightness(${brightness})`;
+                        } else {
+                            currentSec.style.transform = `scale(1) translate3d(0, 0, 0)`;
+                            currentSec.style.filter = `brightness(1)`;
+                        }
+                    }
+                    ticking = false;
+                }
+
+                window.addEventListener('scroll', () => {
+                    if (!ticking) {
+                        window.requestAnimationFrame(updateDepthEffect);
+                        ticking = true;
+                    }
+                }, { passive: true });
+
+                // Initial trigger to set correct states on load
+                updateDepthEffect();
             }
 
             initSectionStacking();
