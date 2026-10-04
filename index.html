@@ -2581,7 +2581,6 @@
         .testi-column-track {
             display: flex;
             flex-direction: column;
-            gap: 22px;
             will-change: transform;
             transform: translateZ(0);
         }
@@ -2617,6 +2616,7 @@
             border-radius: 22px;
             overflow: hidden;
             padding: 8px;
+            margin-bottom: 22px;
             box-shadow: 0 10px 30px rgba(0, 0, 0, 0.45), 0 0 15px rgba(0, 240, 255, 0.04);
             transition: transform 0.35s cubic-bezier(0.16, 1, 0.3, 1), border-color 0.3s ease, box-shadow 0.3s ease;
             cursor: pointer;
@@ -4186,6 +4186,7 @@
             min-height: 100dvh;
             box-sizing: border-box;
             background-color: #05100c;
+            will-change: transform, filter;
         }
 
         /* Layered Card Drop Shadow, Top Highlight, and Rounded Shoulders on Incoming Sections */
@@ -4414,7 +4415,7 @@
                 <div class="about-left">
                     <div class="about-image-wrapper">
                         <div class="about-image-bg"></div>
-                        <img src="WhatsApp-Image-2026-09-24-at-22.56.49.jpeg" alt="Siraj Commentator" class="about-image" loading="lazy" decoding="async">
+                        <img src="WhatsApp-Image-2026-09-24-at-22.56.49.jpeg" alt="Siraj Commentator" class="about-image" loading="eager" decoding="async">
                     </div>
                     
                     <div class="contact-card">
@@ -4459,7 +4460,7 @@
                     </p>
 
                     <div style="margin-bottom: 40px; margin-top: 20px;">
-                        <img src="rating.jpeg?v=2" id="proof-image" alt="CricHeroes Rating 4.9 Proof" style="max-width: 100%; max-height: 250px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,240,255,0.2); border: 1px solid rgba(0,240,255,0.4); display: block; cursor: pointer; transition: transform 0.3s ease;" loading="lazy" decoding="async">
+                        <img src="rating.jpeg?v=2" id="proof-image" alt="CricHeroes Rating 4.9 Proof" style="max-width: 100%; max-height: 250px; border-radius: 12px; box-shadow: 0 10px 30px rgba(0,240,255,0.2); border: 1px solid rgba(0,240,255,0.4); display: block; cursor: pointer; transition: transform 0.3s ease;" loading="eager" decoding="async">
                     </div>
 
                     <div class="details-grid">
@@ -4486,7 +4487,7 @@
                             <!-- Dual Photo Gallery for Anchoring with Pop-Out Lightbox -->
                             <div class="anchor-photos-grid">
                                 <div class="anchor-photo-card" data-src="1.jpeg" role="button" tabindex="0" aria-label="Siraj Live Ceremony &amp; Podium Anchoring - Click to expand">
-                                    <img src="1.jpeg" alt="Siraj Live Ceremony &amp; Podium Anchoring" loading="lazy" decoding="async">
+                                    <img src="1.jpeg" alt="Siraj Live Ceremony &amp; Podium Anchoring" loading="eager" decoding="async">
                                     <div class="anchor-photo-badge">
                                         <span><i class="fa-solid fa-microphone"></i> Ceremony &amp; Podium Anchor</span>
                                         <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -4494,7 +4495,7 @@
                                 </div>
 
                                 <div class="anchor-photo-card" data-src="WhatsApp-Image-2026-09-27-at-11.43.06.jpeg" role="button" tabindex="0" aria-label="Siraj Tournament Auctioneer &amp; Stage Show Hosting - Click to expand">
-                                    <img src="WhatsApp-Image-2026-09-27-at-11.43.06.jpeg" alt="Siraj Tournament Auctioneer &amp; Stage Show Hosting" loading="lazy" decoding="async">
+                                    <img src="WhatsApp-Image-2026-09-27-at-11.43.06.jpeg" alt="Siraj Tournament Auctioneer &amp; Stage Show Hosting" loading="eager" decoding="async">
                                     <div class="anchor-photo-badge">
                                         <span><i class="fa-solid fa-gavel"></i> Tournament Auctioneer &amp; Show Emcee</span>
                                         <i class="fa-solid fa-magnifying-glass-plus"></i>
@@ -4721,55 +4722,55 @@
                 <div class="brand-logos-grid" id="brand-logos-grid">
                     <!-- Row 1 -->
                     <div class="brand-logo-card" data-logo="no-bg-logo/streax.png" data-name="Streax Cream Hair Colour" role="button" tabindex="0" aria-label="Streax Cream Hair Colour - Click to pop out">
-                        <img src="no-bg-logo/streax.png" alt="Streax Cream Hair Colour" loading="lazy" decoding="async">
+                        <img src="no-bg-logo/streax.png" alt="Streax Cream Hair Colour" loading="eager" decoding="async">
                         <div class="brand-card-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                     <div class="brand-logo-card" data-logo="no-bg-logo/ccc.png" data-name="Accu-Chek" role="button" tabindex="0" aria-label="Accu-Chek - Click to pop out">
-                        <img src="no-bg-logo/ccc.png" alt="Accu-Chek" loading="lazy" decoding="async">
+                        <img src="no-bg-logo/ccc.png" alt="Accu-Chek" loading="eager" decoding="async">
                         <div class="brand-card-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                     <div class="brand-logo-card" data-logo="no-bg-logo/gm.png" data-name="GM Modular" role="button" tabindex="0" aria-label="GM Modular - Click to pop out">
-                        <img src="no-bg-logo/gm.png" alt="GM Modular" loading="lazy" decoding="async">
+                        <img src="no-bg-logo/gm.png" alt="GM Modular" loading="eager" decoding="async">
                         <div class="brand-card-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                     <div class="brand-logo-card" data-logo="no-bg-logo/bandhan-bank.png" data-name="Bandhan Bank" role="button" tabindex="0" aria-label="Bandhan Bank - Click to pop out">
-                        <img src="no-bg-logo/bandhan-bank.png" alt="Bandhan Bank" loading="lazy" decoding="async">
+                        <img src="no-bg-logo/bandhan-bank.png" alt="Bandhan Bank" loading="eager" decoding="async">
                         <div class="brand-card-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
 
                     <!-- Row 2 -->
                     <div class="brand-logo-card" data-logo="no-bg-logo/red-cherry.png" data-name="Red Cherry" role="button" tabindex="0" aria-label="Red Cherry - Click to pop out">
-                        <img src="no-bg-logo/red-cherry.png" alt="Red Cherry" loading="lazy" decoding="async">
+                        <img src="no-bg-logo/red-cherry.png" alt="Red Cherry" loading="eager" decoding="async">
                         <div class="brand-card-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                     <div class="brand-logo-card" data-logo="no-bg-logo/thunder.png" data-name="Thunderbolt Cricket League" role="button" tabindex="0" aria-label="Thunderbolt Cricket League - Click to pop out">
-                        <img src="no-bg-logo/thunder.png" alt="Thunderbolt Cricket League" loading="lazy" decoding="async">
+                        <img src="no-bg-logo/thunder.png" alt="Thunderbolt Cricket League" loading="eager" decoding="async">
                         <div class="brand-card-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                     <div class="brand-logo-card" data-logo="no-bg-logo/maha.png" data-name="Mahanagar Gas" role="button" tabindex="0" aria-label="Mahanagar Gas - Click to pop out">
-                        <img src="no-bg-logo/maha.png" alt="Mahanagar Gas" loading="lazy" decoding="async">
+                        <img src="no-bg-logo/maha.png" alt="Mahanagar Gas" loading="eager" decoding="async">
                         <div class="brand-card-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                     <div class="brand-logo-card" data-logo="no-bg-logo/barc.png" data-name="Bhabha Atomic Research Centre (BARC)" role="button" tabindex="0" aria-label="BARC - Click to pop out">
-                        <img src="no-bg-logo/barc.png" alt="BARC" loading="lazy" decoding="async">
+                        <img src="no-bg-logo/barc.png" alt="BARC" loading="eager" decoding="async">
                         <div class="brand-card-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
 
                     <!-- Row 3 -->
                     <div class="brand-logo-card" data-logo="no-bg-logo/birla.png" data-name="Aditya Birla Group" role="button" tabindex="0" aria-label="Aditya Birla Group - Click to pop out">
-                        <img src="no-bg-logo/birla.png" alt="Aditya Birla Group" loading="lazy" decoding="async">
+                        <img src="no-bg-logo/birla.png" alt="Aditya Birla Group" loading="eager" decoding="async">
                         <div class="brand-card-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                     <div class="brand-logo-card" data-logo="no-bg-logo/lodha.png" data-name="Lodha Group" role="button" tabindex="0" aria-label="Lodha Group - Click to pop out">
-                        <img src="no-bg-logo/lodha.png" alt="Lodha Group" loading="lazy" decoding="async">
+                        <img src="no-bg-logo/lodha.png" alt="Lodha Group" loading="eager" decoding="async">
                         <div class="brand-card-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                     <div class="brand-logo-card" data-logo="no-bg-logo/adani.png" data-name="Adani Newharbour Developers" role="button" tabindex="0" aria-label="Adani - Click to pop out">
-                        <img src="no-bg-logo/adani.png" alt="Adani Newharbour Developers" loading="lazy" decoding="async">
+                        <img src="no-bg-logo/adani.png" alt="Adani Newharbour Developers" loading="eager" decoding="async">
                         <div class="brand-card-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                     <div class="brand-logo-card" data-logo="no-bg-logo/rustomjee.png" data-name="Rustomjee" role="button" tabindex="0" aria-label="Rustomjee - Click to pop out">
-                        <img src="no-bg-logo/rustomjee.png" alt="Rustomjee" loading="lazy" decoding="async">
+                        <img src="no-bg-logo/rustomjee.png" alt="Rustomjee" loading="eager" decoding="async">
                         <div class="brand-card-hint"><i class="fa-solid fa-magnifying-glass-plus"></i></div>
                     </div>
                 </div>
@@ -4788,7 +4789,7 @@
                 <div class="apple-carousel-track" id="apple-carousel" style="display: flex; gap: 24px; overflow-x: auto; padding: 20px; scroll-snap-type: x mandatory; scrollbar-width: none; scroll-behavior: smooth;">
                     <!-- Card 1 (Trophy in Hand) -->
                     <div class="apple-card" data-src="testimonial/IMG20250523174603.jpg">
-                        <img src="testimonial/IMG20250523174603.jpg" alt="Trophy Award" loading="lazy" decoding="async">
+                        <img src="testimonial/IMG20250523174603.jpg" alt="Trophy Award" loading="eager" decoding="async">
                         <div class="apple-card-overlay"></div>
                         <div class="apple-card-content">
                             <span class="apple-card-category">Recognition</span>
@@ -4798,7 +4799,7 @@
                     
                     <!-- Card 2 -->
                     <div class="apple-card" data-src="testimonial/1000049442.jpg">
-                        <img src="testimonial/1000049442.jpg" alt="Event" loading="lazy" decoding="async">
+                        <img src="testimonial/1000049442.jpg" alt="Event" loading="eager" decoding="async">
                         <div class="apple-card-overlay"></div>
                         <div class="apple-card-content">
                             <span class="apple-card-category">Event</span>
@@ -4808,7 +4809,7 @@
                     
                     <!-- Card 3 -->
                     <div class="apple-card" data-src="testimonial/1000179563.jpg">
-                        <img src="testimonial/1000179563.jpg" alt="Highlight" loading="lazy" decoding="async">
+                        <img src="testimonial/1000179563.jpg" alt="Highlight" loading="eager" decoding="async">
                         <div class="apple-card-overlay"></div>
                         <div class="apple-card-content">
                             <span class="apple-card-category">Highlight</span>
@@ -4818,7 +4819,7 @@
 
                     <!-- Card 4 -->
                     <div class="apple-card" data-src="testimonial/1000179923.jpg">
-                        <img src="testimonial/1000179923.jpg" alt="Crowd" loading="lazy" decoding="async">
+                        <img src="testimonial/1000179923.jpg" alt="Crowd" loading="eager" decoding="async">
                         <div class="apple-card-overlay"></div>
                         <div class="apple-card-content">
                             <span class="apple-card-category">Connection</span>
@@ -4828,7 +4829,7 @@
 
                     <!-- Card 5 -->
                     <div class="apple-card" data-src="testimonial/1000186517.jpg">
-                        <img src="testimonial/1000186517.jpg" alt="Action" loading="lazy" decoding="async">
+                        <img src="testimonial/1000186517.jpg" alt="Action" loading="eager" decoding="async">
                         <div class="apple-card-overlay"></div>
                         <div class="apple-card-content">
                             <span class="apple-card-category">Action</span>
@@ -4838,7 +4839,7 @@
                     
                     <!-- Card 6 -->
                     <div class="apple-card" data-src="testimonial/1000391159.jpg">
-                        <img src="testimonial/1000391159.jpg" alt="Studio" loading="lazy" decoding="async">
+                        <img src="testimonial/1000391159.jpg" alt="Studio" loading="eager" decoding="async">
                         <div class="apple-card-overlay"></div>
                         <div class="apple-card-content">
                             <span class="apple-card-category">Studio</span>
@@ -5005,53 +5006,53 @@
                     <!-- Set 1 -->
                     <div class="testi-card-item" data-src="testi/review-01.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-01.jpeg" alt="Client Review 1" loading="lazy" decoding="async">
+                        <img src="testi/review-01.jpeg" alt="Client Review 1" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-02.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-02.jpeg" alt="Client Review 2" loading="lazy" decoding="async">
+                        <img src="testi/review-02.jpeg" alt="Client Review 2" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-03.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-03.jpeg" alt="Client Review 3" loading="lazy" decoding="async">
+                        <img src="testi/review-03.jpeg" alt="Client Review 3" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-04.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-04.jpeg" alt="Client Review 4" loading="lazy" decoding="async">
+                        <img src="testi/review-04.jpeg" alt="Client Review 4" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-05.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-05.jpeg" alt="Client Review 5" loading="lazy" decoding="async">
+                        <img src="testi/review-05.jpeg" alt="Client Review 5" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-06.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-06.jpeg" alt="Client Review 6" loading="lazy" decoding="async">
+                        <img src="testi/review-06.jpeg" alt="Client Review 6" loading="eager" decoding="async">
                     </div>
                     
                     <!-- Set 2 (Infinite marquee duplicate) -->
                     <div class="testi-card-item" data-src="testi/review-01.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-01.jpeg" alt="Client Review 1" loading="lazy" decoding="async">
+                        <img src="testi/review-01.jpeg" alt="Client Review 1" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-02.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-02.jpeg" alt="Client Review 2" loading="lazy" decoding="async">
+                        <img src="testi/review-02.jpeg" alt="Client Review 2" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-03.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-03.jpeg" alt="Client Review 3" loading="lazy" decoding="async">
+                        <img src="testi/review-03.jpeg" alt="Client Review 3" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-04.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-04.jpeg" alt="Client Review 4" loading="lazy" decoding="async">
+                        <img src="testi/review-04.jpeg" alt="Client Review 4" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-05.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-05.jpeg" alt="Client Review 5" loading="lazy" decoding="async">
+                        <img src="testi/review-05.jpeg" alt="Client Review 5" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-06.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-06.jpeg" alt="Client Review 6" loading="lazy" decoding="async">
+                        <img src="testi/review-06.jpeg" alt="Client Review 6" loading="eager" decoding="async">
                     </div>
                 </div>
             </div>
@@ -5062,53 +5063,53 @@
                     <!-- Set 1 -->
                     <div class="testi-card-item" data-src="testi/review-07.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-07.jpeg" alt="Client Review 7" loading="lazy" decoding="async">
+                        <img src="testi/review-07.jpeg" alt="Client Review 7" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-08.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-08.jpeg" alt="Client Review 8" loading="lazy" decoding="async">
+                        <img src="testi/review-08.jpeg" alt="Client Review 8" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-09.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-09.jpeg" alt="Client Review 9" loading="lazy" decoding="async">
+                        <img src="testi/review-09.jpeg" alt="Client Review 9" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-10.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-10.jpeg" alt="Client Review 10" loading="lazy" decoding="async">
+                        <img src="testi/review-10.jpeg" alt="Client Review 10" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-11.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-11.jpeg" alt="Client Review 11" loading="lazy" decoding="async">
+                        <img src="testi/review-11.jpeg" alt="Client Review 11" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-12.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-12.jpeg" alt="Client Review 12" loading="lazy" decoding="async">
+                        <img src="testi/review-12.jpeg" alt="Client Review 12" loading="eager" decoding="async">
                     </div>
                     
                     <!-- Set 2 (Infinite marquee duplicate) -->
                     <div class="testi-card-item" data-src="testi/review-07.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-07.jpeg" alt="Client Review 7" loading="lazy" decoding="async">
+                        <img src="testi/review-07.jpeg" alt="Client Review 7" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-08.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-08.jpeg" alt="Client Review 8" loading="lazy" decoding="async">
+                        <img src="testi/review-08.jpeg" alt="Client Review 8" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-09.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-09.jpeg" alt="Client Review 9" loading="lazy" decoding="async">
+                        <img src="testi/review-09.jpeg" alt="Client Review 9" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-10.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-10.jpeg" alt="Client Review 10" loading="lazy" decoding="async">
+                        <img src="testi/review-10.jpeg" alt="Client Review 10" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-11.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-11.jpeg" alt="Client Review 11" loading="lazy" decoding="async">
+                        <img src="testi/review-11.jpeg" alt="Client Review 11" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-12.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-12.jpeg" alt="Client Review 12" loading="lazy" decoding="async">
+                        <img src="testi/review-12.jpeg" alt="Client Review 12" loading="eager" decoding="async">
                     </div>
                 </div>
             </div>
@@ -5119,61 +5120,61 @@
                     <!-- Set 1 -->
                     <div class="testi-card-item" data-src="testi/review-13.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-13.jpeg" alt="Client Review 13" loading="lazy" decoding="async">
+                        <img src="testi/review-13.jpeg" alt="Client Review 13" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-14.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-14.jpeg" alt="Client Review 14" loading="lazy" decoding="async">
+                        <img src="testi/review-14.jpeg" alt="Client Review 14" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-15.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-15.jpeg" alt="Client Review 15" loading="lazy" decoding="async">
+                        <img src="testi/review-15.jpeg" alt="Client Review 15" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-16.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-16.jpeg" alt="Client Review 16" loading="lazy" decoding="async">
+                        <img src="testi/review-16.jpeg" alt="Client Review 16" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-17.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-17.jpeg" alt="Client Review 17" loading="lazy" decoding="async">
+                        <img src="testi/review-17.jpeg" alt="Client Review 17" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-18.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-18.jpeg" alt="Client Review 18" loading="lazy" decoding="async">
+                        <img src="testi/review-18.jpeg" alt="Client Review 18" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-19.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-19.jpeg" alt="Client Review 19" loading="lazy" decoding="async">
+                        <img src="testi/review-19.jpeg" alt="Client Review 19" loading="eager" decoding="async">
                     </div>
                     
                     <!-- Set 2 (Infinite marquee duplicate) -->
                     <div class="testi-card-item" data-src="testi/review-13.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-13.jpeg" alt="Client Review 13" loading="lazy" decoding="async">
+                        <img src="testi/review-13.jpeg" alt="Client Review 13" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-14.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-14.jpeg" alt="Client Review 14" loading="lazy" decoding="async">
+                        <img src="testi/review-14.jpeg" alt="Client Review 14" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-15.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-15.jpeg" alt="Client Review 15" loading="lazy" decoding="async">
+                        <img src="testi/review-15.jpeg" alt="Client Review 15" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-16.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-16.jpeg" alt="Client Review 16" loading="lazy" decoding="async">
+                        <img src="testi/review-16.jpeg" alt="Client Review 16" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-17.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-17.jpeg" alt="Client Review 17" loading="lazy" decoding="async">
+                        <img src="testi/review-17.jpeg" alt="Client Review 17" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-18.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-18.jpeg" alt="Client Review 18" loading="lazy" decoding="async">
+                        <img src="testi/review-18.jpeg" alt="Client Review 18" loading="eager" decoding="async">
                     </div>
                     <div class="testi-card-item" data-src="testi/review-19.jpeg">
                         <span class="testi-card-zoom-hint"><i class="fa-solid fa-expand"></i></span>
-                        <img src="testi/review-19.jpeg" alt="Client Review 19" loading="lazy" decoding="async">
+                        <img src="testi/review-19.jpeg" alt="Client Review 19" loading="eager" decoding="async">
                     </div>
                 </div>
             </div>
@@ -5208,7 +5209,7 @@
                     <div class="timeline-images">
                         <div class="timeline-actor-card" data-src="actor/Indian Cricketer pravin tambe.jpeg" data-name="Indian Cricketer Pravin Tambe" role="button" tabindex="0" aria-label="Indian Cricketer Pravin Tambe - Click to expand">
                             <div class="timeline-actor-img-wrap" style="flex:1; min-height:180px;">
-                                <img src="actor/Indian Cricketer pravin tambe.jpeg" alt="Indian Cricketer Pravin Tambe" loading="lazy" decoding="async" style="height:100%; object-fit:cover; object-position:center top;">
+                                <img src="actor/Indian Cricketer pravin tambe.jpeg" alt="Indian Cricketer Pravin Tambe" loading="eager" decoding="async" style="height:100%; object-fit:cover; object-position:center top;">
                                 <div class="timeline-actor-overlay">
                                     <span class="timeline-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
                                 </div>
@@ -5221,7 +5222,7 @@
 
                         <div class="timeline-actor-card" data-src="actor/BJP Minister (IT) Ashish Shelar Sir.jpeg" data-name="BJP Minister (IT) Ashish Shelar Sir" role="button" tabindex="0" aria-label="BJP Minister (IT) Ashish Shelar Sir - Click to expand">
                             <div class="timeline-actor-img-wrap">
-                                <img src="actor/BJP Minister (IT) Ashish Shelar Sir.jpeg" alt="BJP Minister (IT) Ashish Shelar Sir" loading="lazy" decoding="async">
+                                <img src="actor/BJP Minister (IT) Ashish Shelar Sir.jpeg" alt="BJP Minister (IT) Ashish Shelar Sir" loading="eager" decoding="async">
                                 <div class="timeline-actor-overlay">
                                     <span class="timeline-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
                                 </div>
@@ -5249,7 +5250,7 @@
                     <div class="timeline-images">
                         <div class="timeline-actor-card" data-src="actor/Member of parliament imtiyaz jaleel.jpeg" data-name="Member of Parliament Imtiyaz Jaleel" role="button" tabindex="0" aria-label="Member of Parliament Imtiyaz Jaleel - Click to expand">
                             <div class="timeline-actor-img-wrap">
-                                <img src="actor/Member of parliament imtiyaz jaleel.jpeg" alt="Member of Parliament Imtiyaz Jaleel" loading="lazy" decoding="async">
+                                <img src="actor/Member of parliament imtiyaz jaleel.jpeg" alt="Member of Parliament Imtiyaz Jaleel" loading="eager" decoding="async">
                                 <div class="timeline-actor-overlay">
                                     <span class="timeline-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
                                 </div>
@@ -5262,7 +5263,7 @@
 
                         <div class="timeline-actor-card" data-src="actor/international umpire.jpeg" data-name="International Umpire" role="button" tabindex="0" aria-label="International Umpire - Click to expand">
                             <div class="timeline-actor-img-wrap">
-                                <img src="actor/international umpire.jpeg" alt="International Umpire" loading="lazy" decoding="async">
+                                <img src="actor/international umpire.jpeg" alt="International Umpire" loading="eager" decoding="async">
                                 <div class="timeline-actor-overlay">
                                     <span class="timeline-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
                                 </div>
@@ -5290,7 +5291,7 @@
                     <div class="timeline-images">
                         <div class="timeline-actor-card" data-src="actor/Actor bakhtyar  irani.jpeg" data-name="Actor Bakhtyar Irani" role="button" tabindex="0" aria-label="Actor Bakhtyar Irani - Click to expand">
                             <div class="timeline-actor-img-wrap">
-                                <img src="actor/Actor bakhtyar  irani.jpeg" alt="Actor Bakhtyar Irani" loading="lazy" decoding="async">
+                                <img src="actor/Actor bakhtyar  irani.jpeg" alt="Actor Bakhtyar Irani" loading="eager" decoding="async">
                                 <div class="timeline-actor-overlay">
                                     <span class="timeline-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
                                 </div>
@@ -5303,7 +5304,7 @@
 
                         <div class="timeline-actor-card" data-src="actor/Bollywood singer raja hasan.jpeg" data-name="Bollywood Singer Raja Hasan" role="button" tabindex="0" aria-label="Bollywood Singer Raja Hasan - Click to expand">
                             <div class="timeline-actor-img-wrap">
-                                <img src="actor/Bollywood singer raja hasan.jpeg" alt="Bollywood Singer Raja Hasan" loading="lazy" decoding="async">
+                                <img src="actor/Bollywood singer raja hasan.jpeg" alt="Bollywood Singer Raja Hasan" loading="eager" decoding="async">
                                 <div class="timeline-actor-overlay">
                                     <span class="timeline-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
                                 </div>
@@ -5331,7 +5332,7 @@
                     <div class="timeline-images">
                         <div class="timeline-actor-card" data-src="actor/Bollywood singer bhanu pandit.jpeg" data-name="Bollywood Singer Bhanu Pandit" role="button" tabindex="0" aria-label="Bollywood Singer Bhanu Pandit - Click to expand">
                             <div class="timeline-actor-img-wrap">
-                                <img src="actor/Bollywood singer bhanu pandit.jpeg" alt="Bollywood Singer Bhanu Pandit" loading="lazy" decoding="async">
+                                <img src="actor/Bollywood singer bhanu pandit.jpeg" alt="Bollywood Singer Bhanu Pandit" loading="eager" decoding="async">
                                 <div class="timeline-actor-overlay">
                                     <span class="timeline-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
                                 </div>
@@ -5344,7 +5345,7 @@
 
                         <div class="timeline-actor-card" data-src="actor/Shri M R Singh (Madanmohan R Singh).jpeg" data-name="Shri M R Singh (Madanmohan R Singh)" role="button" tabindex="0" aria-label="Shri M R Singh (Madanmohan R Singh) - Click to expand">
                             <div class="timeline-actor-img-wrap">
-                                <img src="actor/Shri M R Singh (Madanmohan R Singh).jpeg" alt="Shri M R Singh (Madanmohan R Singh)" loading="lazy" decoding="async">
+                                <img src="actor/Shri M R Singh (Madanmohan R Singh).jpeg" alt="Shri M R Singh (Madanmohan R Singh)" loading="eager" decoding="async">
                                 <div class="timeline-actor-overlay">
                                     <span class="timeline-zoom-icon"><i class="fa-solid fa-magnifying-glass-plus"></i></span>
                                 </div>
@@ -5376,7 +5377,7 @@
     <div id="lightbox" class="lightbox" role="dialog" aria-modal="true" aria-label="Expanded View">
         <span class="lightbox-close" role="button" tabindex="0" aria-label="Close lightbox">&times;</span>
         <div class="lightbox-wrapper" id="lightbox-wrapper">
-            <img class="lightbox-content" id="lightbox-img" alt="Expanded image view" loading="lazy" decoding="async">
+            <img class="lightbox-content" id="lightbox-img" alt="Expanded image view" loading="eager" decoding="async">
             <div id="lightbox-brand-info" style="display: none; text-align: center;">
                 <div id="lightbox-brand-caption" class="lightbox-brand-caption"></div>
                 <div class="lightbox-brand-badge"><i class="fa-solid fa-handshake"></i> Official Brand Collaboration</div>
@@ -7391,6 +7392,29 @@
         });
     </script>
     
+    <!-- Smooth Scrolling for Premium Cinematic Effect -->
+    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
+    <script>
+        // Initialize Lenis for buttery smooth scrolling (syncs with requestAnimationFrame)
+        const lenis = new Lenis({
+            duration: 1.2,
+            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // smooth ease-out
+            direction: 'vertical',
+            gestureDirection: 'vertical',
+            smooth: true,
+            mouseMultiplier: 1,
+            smoothTouch: false,
+            touchMultiplier: 2,
+            infinite: false,
+        });
+
+        function raf(time) {
+            lenis.raf(time);
+            requestAnimationFrame(raf);
+        }
+
+        requestAnimationFrame(raf);
+    </script>
 </body>
 </html>
 
