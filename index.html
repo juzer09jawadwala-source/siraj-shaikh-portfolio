@@ -4189,6 +4189,16 @@
             will-change: transform, filter;
         }
 
+        /* Ensure normal sections scroll OVER the pinned stack-sections */
+        .video-highlights-section, 
+        .testimonials-v2-section, 
+        .timeline-section, 
+        .apple-hello-section {
+            position: relative;
+            z-index: 999;
+            background-color: #05100c;
+        }
+
         /* Layered Card Drop Shadow, Top Highlight, and Rounded Shoulders on Incoming Sections */
         .stack-section:not(:first-child) {
             box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.95), 0 -1px 0 rgba(0, 240, 255, 0.15);
