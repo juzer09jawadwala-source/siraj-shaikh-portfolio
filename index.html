@@ -32,8 +32,8 @@
         }
         /* Ensure main layout doesn't overflow horizontally */
         body {
-            background-color: #05100c;
             max-width: 100%;
+            overflow-x: clip;
         }
         .main-wrapper {
             overflow-x: clip;
@@ -56,7 +56,9 @@
         }
 
         body, html {
+            height: 100%;
             background-color: #05100c; /* Deep emerald base fallback */
+            
         }
 
         /* 
@@ -4175,55 +4177,52 @@
         }
 
         /* ==========================================================================
-           Stacked Section Scroll Animation (Apple / Editorial Layered Cards)
+           Stacked Section Scroll Animation (Reference: animate.mp4)
+           Apple / Editorial Layered Card-Over-Card Scroll Scrubbing
            ========================================================================== */
         .stack-section {
             position: -webkit-sticky;
             position: sticky;
             top: 0;
             width: 100%;
-            min-height: 100vh;
-            min-height: 100dvh;
             box-sizing: border-box;
-            background-color: #05100c;
-            will-change: transform, filter;
-        }
-
-        /* Ensure normal sections scroll OVER the pinned stack-sections */
-        .video-highlights-section, 
-        .testimonials-v2-section, 
-        .timeline-section, 
-        .apple-hello-section {
-            position: relative;
-            z-index: 999;
+            will-change: transform;
+            transform: translate3d(0, 0, 0);
+            -webkit-transform: translate3d(0, 0, 0);
+            backface-visibility: hidden;
+            -webkit-backface-visibility: hidden;
             background-color: #05100c;
         }
 
-        /* Layered Card Drop Shadow, Top Highlight, and Rounded Shoulders on Incoming Sections */
+        /* Layered Card Drop Shadow & Highlight Line on Incoming Sections */
         .stack-section:not(:first-child) {
-            box-shadow: 0 -15px 30px rgba(0, 0, 0, 0.8), 0 -1px 0 rgba(0, 240, 255, 0.15);
-            border-top-left-radius: 20px;
-            border-top-right-radius: 20px;
+            box-shadow: 0 -25px 60px rgba(0, 0, 0, 0.95), 0 -1px 0 rgba(0, 240, 255, 0.12);
         }
 
-        /* Ensure shorter standalone visual sections center content nicely when filling the 100vh card */
-        .particles-section.stack-section,
+        /* Ensure shorter sections maintain comfortable viewport coverage while stacking */
         .squiggly-section.stack-section,
-        .stats-section.stack-section,
-        .flip-board-section.stack-section,
-        .apple-hello-section.stack-section {
+        .stats-section.stack-section {
+            min-height: 70vh;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
-        /* Stacking transition active for all users testing this portfolio feature */
+        /* Accessibility: Disable stacking transition for users with reduced motion preference */
+        @media (prefers-reduced-motion: reduce) {
+            .stack-section {
+                position: static !important;
+                top: auto !important;
+                transform: none !important;
+                box-shadow: none !important;
+            }
+        }
     </style>
 <link rel="icon" type="image/x-icon" href="favicon.ico">
 </head>
 <body>
 
-    <div class="hero-bg stack-section">
+    <div class="hero-bg">
         <header>
             <div class="header-left">
                 <div class="gooey-search-wrapper">
@@ -4383,7 +4382,7 @@
     </div>
 
     <!-- Interactive Particles Section -->
-    <section class="particles-section stack-section" id="particles">
+    <section class="particles-section" id="particles">
         <canvas id="particleCanvas"></canvas>
     </section>
 
@@ -4399,7 +4398,7 @@
     </svg>
 
     <!-- Squiggly Text Section -->
-    <section class="squiggly-section stack-section" style="padding: 100px 20px; text-align: center; background-color: #05100c;">
+    <section class="squiggly-section" style="padding: 100px 20px; text-align: center; background-color: #05100c;">
         <h2 style="font-family: 'Clash Display', sans-serif; font-size: clamp(2rem, 5vw, 5rem); color: #fff; line-height: 1.3;">
             How many <span class="squiggly-text" style="color: var(--electric-cyan);">sixes</span> <br/>
             are <span class="squiggly-text-small">too many</span> sixes?
@@ -4407,7 +4406,7 @@
     </section>
 
     <!-- About Section -->
-    <section class="about-section stack-section" id="about">
+    <section class="about-section" id="about">
         <!-- Ripple Effect Background -->
         <div class="ripple-background" id="ripple-background">
             <div class="ripple-grid" id="ripple-grid"></div>
@@ -4659,7 +4658,7 @@
     </section>
 
     <!-- Stats Counter Section -->
-    <section class="stats-section stack-section" id="stats">
+    <section class="stats-section" id="stats">
         <div class="stats-container">
             <div class="stat-card">
                 <h3 class="stat-number" data-target="1000" data-suffix="+">0</h3>
@@ -4677,7 +4676,7 @@
     </section>
 
     <!-- Text Flipping Board Section -->
-    <section class="flip-board-section stack-section">
+    <section class="flip-board-section">
         <h2 style="font-family: 'Clash Display', sans-serif; font-size: 3rem; color: #fff; text-transform: uppercase; margin-bottom: 50px; text-align: center; text-shadow: 0 0 20px rgba(0,240,255,0.3); line-height: 1.2;">
             Siraj's Signature <span style="color: var(--electric-cyan);">Catchphrase</span><br>
             <span style="font-size: 1.5rem; opacity: 0.8; letter-spacing: 4px; color: #ccc;">FOR 4's & 6's</span>
@@ -4686,7 +4685,7 @@
     </section>
 
     <!-- Brands Collaboration Infinite Loop Slider (with Aceternity Lamp Effect) -->
-    <div class="brands-collab lamp-container stack-section">
+    <div class="brands-collab lamp-container">
         <!-- Lamp Graphics Background Layer -->
         <div class="lamp-graphics">
             <!-- Left Cone -->
@@ -4789,7 +4788,7 @@
     </div>
 
     <!-- Apple Cards Carousel Section -->
-    <section class="carousel-section stack-section" style="padding: 100px 0; background-color: #05100c;">
+    <section class="carousel-section" style="padding: 100px 0; background-color: #05100c;">
         <div style="max-width: 1300px; margin: 0 auto;">
             <h2 style="font-family: 'Clash Display', sans-serif; font-size: clamp(2rem, 5vw, 3.5rem); color: #fff; margin-bottom: 40px; padding-left: 20px;">
                 Memories & <span style="color: var(--electric-cyan);">Milestones</span>
@@ -7298,29 +7297,28 @@
 
             // --- Section-to-Section Stacked Scroll Controller (animate.mp4 motion reference) ---
             function initSectionStacking() {
+                if (window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                    return;
+                }
+
                 const stackSections = Array.from(document.querySelectorAll('.stack-section'));
                 if (!stackSections.length) return;
 
                 // Assign progressive stacking z-indexes so incoming cards layer naturally on top
                 stackSections.forEach((sec, idx) => {
                     sec.style.zIndex = (idx + 1) * 10;
-                    // Prepare transform origin so it shrinks towards the top (or center)
-                    sec.style.transformOrigin = 'center top';
                 });
-
-                const sectionOffsets = [];
 
                 function calculateOffsets() {
                     const viewportHeight = window.innerHeight;
-                    stackSections.forEach((sec, i) => {
+                    stackSections.forEach((sec) => {
                         const h = sec.offsetHeight;
-                        let targetTop = 0;
                         if (h > viewportHeight) {
                             // Tall sections scroll through their full content, then pin cleanly at the bottom
-                            targetTop = viewportHeight - h;
+                            sec.style.top = `${viewportHeight - h}px`;
+                        } else {
+                            sec.style.top = '0px';
                         }
-                        sec.style.top = `${targetTop}px`;
-                        sectionOffsets[i] = { h, targetTop };
                     });
                 }
 
@@ -7343,59 +7341,6 @@
 
                 // Initial safeguard after images load
                 window.addEventListener('load', calculateOffsets, { passive: true });
-
-                // --- ADVANCED DEPTH EFFECT (Premium Cinematic Scroll overlay) ---
-                let ticking = false;
-
-                function updateDepthEffect() {
-                    const viewportHeight = window.innerHeight;
-                    const progresses = new Array(stackSections.length).fill(0);
-
-                    // READ PHASE: get all geometry without writing any styles (prevents layout thrashing)
-                    for (let i = 0; i < stackSections.length - 1; i++) {
-                        const nextSec = stackSections[i + 1];
-                        const nextRect = nextSec.getBoundingClientRect();
-                        
-                        if (nextRect.top <= viewportHeight) {
-                            progresses[i] = Math.max(0, Math.min(1, (viewportHeight - nextRect.top) / viewportHeight));
-                        }
-                    }
-
-                    // WRITE PHASE: apply all styles together
-                    for (let i = 0; i < stackSections.length; i++) {
-                        const currentSec = stackSections[i];
-                        const progress = progresses[i];
-                        
-                        if (progress > 0) {
-                            // Very subtle cinematic depth effect
-                            const scale = 1 - (0.025 * progress); // Max scale down to 0.975
-                            const brightness = 1 - (0.06 * progress); // Max dim to 0.94
-                            
-                            currentSec.style.transform = `scale(${scale}) translateZ(0)`;
-                            currentSec.style.filter = `brightness(${brightness})`;
-                        } else {
-                            currentSec.style.transform = `scale(1) translateZ(0)`;
-                            currentSec.style.filter = `brightness(1)`;
-                        }
-                    }
-                    ticking = false;
-                }
-
-                window.updateDepthEffect = updateDepthEffect;
-                
-                // Fallback native scroll listener (in case Lenis isn't handling it)
-                window.addEventListener('scroll', () => {
-                    if (!ticking) {
-                        window.requestAnimationFrame(() => {
-                            updateDepthEffect();
-                            ticking = false;
-                        });
-                        ticking = true;
-                    }
-                }, { passive: true });
-
-                // Initial trigger to set correct states on load
-                updateDepthEffect();
             }
 
             initSectionStacking();
@@ -7403,36 +7348,6 @@
         });
     </script>
     
-    <!-- Smooth Scrolling for Premium Cinematic Effect -->
-    <script src="https://unpkg.com/@studio-freight/lenis@1.0.42/dist/lenis.min.js"></script>
-    <script>
-        // Initialize Lenis for buttery smooth scrolling (syncs with requestAnimationFrame)
-        const lenis = new Lenis({
-            duration: 1.2,
-            easing: (t) => Math.min(1, 1.001 - Math.pow(2, -10 * t)), // smooth ease-out
-            direction: 'vertical',
-            gestureDirection: 'vertical',
-            smooth: true,
-            mouseMultiplier: 1,
-            smoothTouch: true, // Enabled for ultra smooth mobile scroll
-            touchMultiplier: 2,
-            infinite: false,
-        });
-
-        // Sync the depth effect perfectly with the Lenis virtual scroll
-        lenis.on('scroll', (e) => {
-            if (window.updateDepthEffect) {
-                window.updateDepthEffect();
-            }
-        });
-
-        function raf(time) {
-            lenis.raf(time);
-            requestAnimationFrame(raf);
-        }
-
-        requestAnimationFrame(raf);
-    </script>
 </body>
 </html>
 
